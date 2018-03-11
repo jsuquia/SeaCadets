@@ -5,7 +5,11 @@
  * Date: 15/09/2017
  * Time: 11:52
  */
+<<<<<<< HEAD
 require('php_scripts/check_cookie.php');
+=======
+//require('php_scripts/check_cookie.php');
+>>>>>>> 8ab19431483c9f3d76e7a81d0de980bf7c45cfa0
 
 ?>
 
