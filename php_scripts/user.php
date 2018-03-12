@@ -22,7 +22,7 @@ class User
     {
         global $conn;
 
-        $sql = "SELECT ID, user_id FROM ip17team5db.session WHERE ID='$sessionid'";
+        $sql = "SELECT ID, user_id FROM mydb.session WHERE ID='$sessionid'";
 
         $result = $conn->query($sql);
 
@@ -42,7 +42,7 @@ class User
     {
         global $conn;
 
-        $sql = "SELECT ID, username, email, privilege FROM ip17team5db.users WHERE ID=$userid";
+        $sql = "SELECT ID, username FROM mydb.users WHERE ID=$userid";
 
         $result = $conn->query($sql);
 
@@ -52,8 +52,8 @@ class User
             {
                 $this->isloaded = true;
                 $this->username = $row["username"];
-                $this->email = $row["email"];
-                $this->privilege = $row["privilege"];
+                //$this->email = $row["email"];
+                //$this->privilege = $row["privilege"];
             }
         } else
         {

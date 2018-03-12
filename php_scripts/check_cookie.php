@@ -10,7 +10,8 @@ require('user.php');
 
 if(!isset($_COOKIE["user_session"]))
 {
-    $redirect_uri = 'https://' . $_SERVER['HTTP_HOST'] . '/2017-projects/team5/industrial_project/login.php';
+    //$redirect_uri = 'https://' . $_SERVER['HTTP_HOST'] . '/2017-projects/seacadet/login.php';
+    $redirect_uri = '/scweb/login.php';
     header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
     exit();
 } else
@@ -23,7 +24,8 @@ if(!isset($_COOKIE["user_session"]))
 
     if($user->isloaded != true)
     {
-        $redirect_uri = 'https://' . $_SERVER['HTTP_HOST'] . '/2017-projects/team5/industrial_project/login.php';
+        //$redirect_uri = 'https://' . $_SERVER['HTTP_HOST'] . '/2017-projects/seacadet/login.php';
+        $redirect_uri = '/scweb/login.php';
         header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
         exit();
     }

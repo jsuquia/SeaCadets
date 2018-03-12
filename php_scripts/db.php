@@ -8,9 +8,9 @@
 
 global $conn;
 
-$user = 'ip17team5';
-$servername = 'silva.computing.dundee.ac.uk';
-$password = '9473.ip17t.3749';
+$user = 'root';
+$servername = 'localhost';
+$password = '';
 
 $conn = new mysqli($servername, $user, $password);
 
@@ -19,5 +19,5 @@ if ($conn->connect_error) {
         . $conn->connect_error);
 } else
 {
-    //echo 'Connection to database successful'; //Remove this later, for testing now
+    echo 'Connection to database successful'; //Remove this later, for testing now
 }
