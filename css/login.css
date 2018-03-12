@@ -6,6 +6,20 @@ body
     font-family: 'Titillium Web', sans-serif;
 }
 
+.container-fluid
+{
+    margin-top: 10vh;
+}
+
+@media (min-width: 992px)
+{
+    .container-fluid
+    {
+        margin-top: 0;
+    }
+}
+
+
 .img-fluid
 {
     margin-top: 32vh;
