@@ -19,5 +19,5 @@ if ($conn->connect_error) {
         . $conn->connect_error);
 } else
 {
-    echo 'Connection to database successful'; //Remove this later, for testing now
+    //echo 'Connection to database successful'; //Remove this later, for testing now
 }

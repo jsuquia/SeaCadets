@@ -26,38 +26,48 @@ require('php_scripts/check_cookie.php');
 <body>
 
 <div class="container-fluid">
-    <div class="row align-items-center">
-        <div class="col-6 hidden-sm-down" id="left">
-            <img src="img/logo.png" class="img-fluid mx-auto d-block" alt="Responsive image">
-        </div>
 
-        <div class="col-12 col-md-6" id="right">
+    <div class="main-header">
+        <h1 class="display-2">Ranks</h1>
+    </div>
 
-            <div class="row justify-content-center">
-                <div class="col-6 content">
-                    <h1 class="display-5 d-inline bold">SIGN IN</h1>
-                    <br><br><br><br>
-                    <form action="models/login_model.php" method ="post">
-                        <div class="form-group">
-                            <h5>USERNAME</h5>
-                            <input type="text" name="username" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="donald_trump" required>
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <h5>PASSWORD</h5>
-                            <input type="password" name="password" class="form-control" id="password" placeholder="*************" required>
-                        </div>
+    <a href="logout.php"> logout </a>
 
-                        <br>
-                        <button type="submit" name="submit" class="btn btn-primary"><b>SIGN IN</b></button>
+    <div class="row">
 
-                    </form>
+        <?php
 
+        $sql = "SELECT rank, abbr FROM mydb.ranks";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0)
+        {
+        // output data of each row
+            while($row = $result->fetch_assoc())
+            {
+            $rank = $row["rank"];
+            $abbr = $row["abbr"];
+
+            ?>
+
+            <div class="col-4 col-md-3" id="rankdiv">
+                <div class="text-center">
+                    <a href="">
+                        <img src="img/ranks/circle.jpg" class="rounded" id="img" alt="logo">
+                    </a>
+                    <h4><?=$rank?> - <?=$abbr?></h4>
                 </div>
             </div>
 
+            <?php
+            }
+        }
+        else
+        {
+            echo "0 results";
+        }
 
-        </div>
+        ?>
     </div>
 
 </div>
