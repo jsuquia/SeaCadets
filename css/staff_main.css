@@ -7,11 +7,21 @@
 .main-header
 {
     margin-bottom: 2rem;
+    border-bottom: 1px solid #5FCFE3;
 }
 
-.rankdiv
+.main-header form
 {
+    text-align: right;
+}
 
+.logout
+{
+    background-color: Transparent;
+    border: none;
+    cursor:pointer;
+    outline:none;
+    padding-top: 4rem;
 }
 
 #rankdiv
@@ -22,5 +32,5 @@
 #img
 {
     max-width: 100%;
-    max-height: 17rem;
+    max-height: 11rem;
 }

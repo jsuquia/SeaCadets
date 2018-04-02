@@ -28,16 +28,33 @@ require('php_scripts/check_cookie.php');
 <div class="container-fluid">
 
     <div class="main-header">
-        <h1 class="display-2">Ranks</h1>
+        <div class="row">
+            <div class="col-10">
+                <h1 class="display-2">Ranks</h1>
+            </div>
+
+            <div class="col-2">
+                <form action="logout.php">
+                    <button type="submit" class="logout align-bottom" title="Logout">
+                        <i class="fa fa-power-off fa-2x" style="color: red;"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+
+
+
+
     </div>
 
-    <a href="logout.php"> logout </a>
+
 
     <div class="row">
 
         <?php
 
-        $sql = "SELECT rank, abbr FROM mydb.ranks";
+        $sql = "SELECT ID, rank, abbr FROM mydb.ranks";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0)
@@ -45,21 +62,23 @@ require('php_scripts/check_cookie.php');
         // output data of each row
             while($row = $result->fetch_assoc())
             {
-            $rank = $row["rank"];
-            $abbr = $row["abbr"];
+                $id = $row["ID"];
+                $rank = $row["rank"];
+                $abbr = $row["abbr"];
 
-            ?>
+                ?>
 
-            <div class="col-4 col-md-3" id="rankdiv">
-                <div class="text-center">
-                    <a href="">
-                        <img src="img/ranks/circle.jpg" class="rounded" id="img" alt="logo">
-                    </a>
-                    <h4><?=$rank?> - <?=$abbr?></h4>
+                <div class="col-4 col-md-3" id="rankdiv">
+                    <div class="text-center">
+                        <a href="students.php?id=<?=$id?>">
+                            <img src="img/ranks/circle.jpg" class="rounded" id="img" alt="logo">
+                        </a>
+                        <h4 class="d-none d-md-block"><?=$rank?> - <?=$abbr?></h4>
+                        <h4 class="d-md-none"><?=$abbr?></h4>
+                    </div>
                 </div>
-            </div>
 
-            <?php
+                <?php
             }
         }
         else
