@@ -22,6 +22,7 @@ require('php_scripts/check_cookie.php');
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/staff_main.css">
 </head>
 <body>
@@ -64,9 +65,16 @@ require('php_scripts/check_cookie.php');
 
                 <div class="col-4 col-md-3" id="rankdiv">
                     <div class="text-center">
-                        <a href="students.php?id=<?=$id?>">
-                            <img src="img/ranks/circle.jpg" class="rounded" id="img" alt="logo">
-                        </a>
+
+                        <form action="models/choice_model.php" method ="post">
+                            <input type="hidden" name="id" value="<?=$id?>">
+                            <input type="hidden" name="choice" id="choice<?=$id?>" value="">
+
+                            <button type="submit" id="btn" name="submit" onclick="getChoice(<?=$id?>)">
+                                <img src="img/ranks/circle.jpg" class="rounded" id="img" alt="logo">
+                            </button>
+                        </form>
+
                         <h4 class="d-none d-md-block"><?=$rank?> - <?=$abbr?></h4>
                         <h4 class="d-md-none"><?=$abbr?></h4>
                     </div>
@@ -83,6 +91,17 @@ require('php_scripts/check_cookie.php');
         ?>
     </div>
 
+<!--    <div class="quarter-circle"></div>-->
+
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-secondary">
+            <input type="radio" name="options" value="students" checked> Students
+        </label>
+        <label class="btn btn-secondary">
+            <input type="radio" name="options" value="modules"> Modules
+        </label>
+    </div>
+
 </div>
 
 
@@ -91,6 +110,27 @@ require('php_scripts/check_cookie.php');
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+<script>
+
+    function getChoice(id){
+        var radios = document.getElementsByName('options');
+        var choice = "choice" + id;
+
+        for (var i = 0, length = radios.length; i < length; i++)
+        {
+            if (radios[i].checked)
+            {
+                // do whatever you want with the checked radio
+                document.getElementById(choice).value = radios[i].value;
+
+                // only one radio can be logically checked, don't check the rest
+                break;
+            }
+        }
+    }
+
+</script>
 
 </body>
 </html>

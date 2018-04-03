@@ -1,0 +1,25 @@
+.container-fluid
+{
+    padding: 3rem;
+    padding-left: 5rem;
+}
+
+.main-header
+{
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #5FCFE3;
+}
+
+.main-header form
+{
+    text-align: right;
+}
+
+.logout
+{
+    background-color: Transparent;
+    border: none;
+    cursor:pointer;
+    outline:none;
+    margin-top: 4rem;
+}

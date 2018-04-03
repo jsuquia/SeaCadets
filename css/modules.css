@@ -1,0 +1,18 @@
+.modules
+{
+    width: 4rem;
+    height: 4rem;
+    background-color: #5FCFE3;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+@media (min-width: 992px)
+{
+    .modules
+    {
+        width: 8rem;
+        height: 8rem;
+    }
+}

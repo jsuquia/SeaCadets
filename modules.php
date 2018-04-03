@@ -25,13 +25,14 @@ if(isset($_GET["id"]))
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Students</title>
+    <title>Modules</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modules.css">
 </head>
 <body>
 
@@ -40,7 +41,7 @@ if(isset($_GET["id"]))
     <div class="main-header">
         <div class="row">
             <div class="col-10">
-                <h1 class="display-2">Students</h1>
+                <h1 class="display-2">Modules</h1>
             </div>
 
             <div class="col-2">
@@ -53,16 +54,10 @@ if(isset($_GET["id"]))
         </div>
     </div>
 
-    <table class="table table-striped">
-<!--        <thead>-->
-<!--        <tr>-->
-<!--            <th scope="col">Name</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-        <tbody>
+    <div class="row">
         <?php
 
-        $sql = "SELECT Name, Surname FROM mydb.students WHERE Rank=$rankID";
+        $sql = "SELECT module, abbr FROM mydb.modules WHERE rank=$rankID";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0)
@@ -70,14 +65,20 @@ if(isset($_GET["id"]))
             // output data of each row
             while($row = $result->fetch_assoc())
             {
-                $name = $row["Name"];
-                $surname = $row["Surname"];
+                $module = $row["module"];
+                $abbr = $row["abbr"];
 
                 ?>
 
-                <tr>
-                    <th scope="row"><?=$name?> <?=$surname?></th>
-                </tr>
+                <div class="col-4 col-md-2" id="rankdiv">
+                    <div class="text-center">
+                        <button class="modules">
+                            <?=$abbr?>
+                        </button>
+                        <p class="d-none d-md-block"><?=$module?></p>
+                        <h4 class="d-md-none"> </h4>
+                    </div>
+                </div>
 
                 <?php
             }
@@ -88,9 +89,7 @@ if(isset($_GET["id"]))
         }
 
         ?>
-        </tbody>
-    </table>
-
+    </div>
 
 </div>
 
