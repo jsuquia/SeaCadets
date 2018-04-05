@@ -1,0 +1,9 @@
+.table thead th
+{
+    border-top: none;
+}
+
+.table td
+{
+    border-right: 1px solid lightgray;
+}

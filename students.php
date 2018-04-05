@@ -32,6 +32,7 @@ if(isset($_GET["id"]))
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/students.css">
 </head>
 <body>
 
@@ -54,15 +55,41 @@ if(isset($_GET["id"]))
     </div>
 
     <table class="table table-striped">
-<!--        <thead>-->
-<!--        <tr>-->
-<!--            <th scope="col">Name</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
+        <thead>
+            <tr>
+                <th scope="col"></th>
+
+                <?php
+
+                $modules_arr = array();
+
+                $sql = "SELECT abbr FROM mydb.modules WHERE Rank=$rankID";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0)
+                {
+                    // output data of each row
+                    while($row = $result->fetch_assoc())
+                    {
+                        $abbr = $row["abbr"];
+                        $modules_arr[] = $row["abbr"];
+
+                        ?>
+
+                        <th scope="col"><?=$abbr?></th>
+
+                        <?php
+                    }
+                }
+
+                ?>
+
+            </tr>
+        </thead>
         <tbody>
         <?php
 
-        $sql = "SELECT Name, Surname FROM mydb.students WHERE Rank=$rankID";
+        $sql = "SELECT ID, Name, Surname FROM mydb.students WHERE Rank=$rankID";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0)
@@ -70,6 +97,7 @@ if(isset($_GET["id"]))
             // output data of each row
             while($row = $result->fetch_assoc())
             {
+                $student_ID = $row["ID"];
                 $name = $row["Name"];
                 $surname = $row["Surname"];
 
@@ -77,6 +105,33 @@ if(isset($_GET["id"]))
 
                 <tr>
                     <th scope="row"><?=$name?> <?=$surname?></th>
+                    <?php
+
+                    foreach($modules_arr as $abbr)
+                    {
+                        $sql1 = "SELECT * FROM mydb.completed_modules WHERE student_ID = $student_ID AND module = '$abbr'";
+                        $result1 = $conn->query($sql1);
+
+                        if ($result1->num_rows > 0)
+                        {
+                            ?>
+
+                            <td style="background-color: limegreen"></td>
+
+                            <?php
+
+                        }
+                        else
+                        {
+                            ?>
+
+                            <td style="background-color: darkred; opacity: 0.6;"></td>
+
+                            <?php
+                        }
+                    }
+
+                    ?>
                 </tr>
 
                 <?php
