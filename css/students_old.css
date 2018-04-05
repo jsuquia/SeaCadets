@@ -1,3 +1,8 @@
+.firstcol
+{
+    width: 15rem;
+    white-space: nowrap;
+}
 
 .main-header h1 button
 {
@@ -10,14 +15,14 @@
     border-top: none;
 }
 
-.right table td
+.table td
 {
     border-right: 1px solid lightgray;
     padding: 0;
     height: 3rem;
 }
 
-.right table tbody button
+.table tbody button
 {
     padding: 0;
     height: 100%;
@@ -27,24 +32,14 @@
     outline:none;
 }
 
-.left table th
-{
-    height: 3rem;
+.table-responsive>.fixed-column {
+    position: absolute;
+    display: inline-block;
+    width: 15rem;
+    border-right: 1px solid #ddd;
 }
-
-.left
-{
-    float: left;
-}
-
-.right
-{
-    width: calc(100% - 15rem);
-    overflow-x: scroll;
-    float: right;
-}
-
-h6
-{
-    font-size: .9rem;
+@media(min-width:5900px) {
+    .table-responsive>.fixed-column {
+        display: none;
+    }
 }

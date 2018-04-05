@@ -55,52 +55,12 @@ if(isset($_GET["id"]))
         </div>
     </div>
 
-    <div class="left">
-        <table class="table table-striped" style="width: 15rem;">
-            <thead>
-            <tr>
-                <th scope="col" style="height: 3.05rem;"></th>
-            </tr>
-            </thead>
-
-            <tbody>
-            <?php
-
-            $sql = "SELECT ID, Name, Surname FROM mydb.students WHERE Rank=$rankID";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0)
-            {
-                // output data of each row
-                while($row = $result->fetch_assoc())
-                {
-                    $student_ID = $row["ID"];
-                    $name = $row["Name"];
-                    $surname = $row["Surname"];
-
-                    ?>
-
-                    <tr>
-                        <th scope="row"><h6><?=$name?> <?=$surname?></h6></th>
-                    </tr>
-
-                    <?php
-                }
-            }
-            else
-            {
-                echo "0 results";
-            }
-
-            ?>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="right">
+    <div class="table-responsive">
         <table class="table table-striped">
             <thead>
             <tr>
+                <th class="firstcol" scope="col"></th>
+
                 <?php
 
                 $modules_arr = array();
@@ -128,11 +88,10 @@ if(isset($_GET["id"]))
 
             </tr>
             </thead>
-
             <tbody>
             <?php
 
-            $sql = "SELECT ID FROM mydb.students WHERE Rank=$rankID";
+            $sql = "SELECT ID, Name, Surname FROM mydb.students WHERE Rank=$rankID";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0)
@@ -141,10 +100,13 @@ if(isset($_GET["id"]))
                 while($row = $result->fetch_assoc())
                 {
                     $student_ID = $row["ID"];
+                    $name = $row["Name"];
+                    $surname = $row["Surname"];
 
                     ?>
 
                     <tr>
+                        <th scope="row"><?=$name?> <?=$surname?></th>
                         <?php
 
                         foreach($modules_arr as $abbr)
@@ -177,6 +139,10 @@ if(isset($_GET["id"]))
                     <?php
                 }
             }
+            else
+            {
+                echo "0 results";
+            }
 
             ?>
             </tbody>
@@ -194,6 +160,15 @@ if(isset($_GET["id"]))
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
 <script>
+
+    var $table = $('.table');
+    var $fixedColumn = $table.clone().insertBefore($table).addClass('fixed-column');
+
+    $fixedColumn.find('th:not(:first-child),td:not(:first-child)').remove();
+
+    $fixedColumn.find('tr').each(function (i, elem) {
+        $(this).height($table.find('tr:eq(' + i + ')').height());
+    });
 
     function activateBtn()
     {
