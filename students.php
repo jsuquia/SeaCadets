@@ -41,8 +41,8 @@ if(isset($_GET["id"]))
     <div class="main-header">
         <div class="row">
             <div class="col-10">
-                <h1 class="display-2">Students</h1>
-                <button onclick="activateBtn()">Edit</button>
+                <h1 class="display-2 d-inline">Students <button type="button" class="btn btn-primary" id="enabling_btn" onclick="activateBtn()">Update Progress</button></h1>
+
             </div>
 
             <div class="col-2">
@@ -166,11 +166,13 @@ if(isset($_GET["id"]))
         {
             $(".update_btn").prop("disabled", false);
             $(".update_btn").css("cursor", "pointer");
+            $("#enabling_btn").text('Save Progress');
         }
         else
         {
             $(".update_btn").prop("disabled", true);
             $(".update_btn").css("cursor", "default");
+            $("#enabling_btn").text('Update Progress');
         }
 
     }
