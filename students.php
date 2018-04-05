@@ -42,6 +42,7 @@ if(isset($_GET["id"]))
         <div class="row">
             <div class="col-10">
                 <h1 class="display-2">Students</h1>
+                <button onclick="activateBtn()">Edit</button>
             </div>
 
             <div class="col-2">
@@ -116,7 +117,7 @@ if(isset($_GET["id"]))
                         {
                             ?>
 
-                            <td style="background-color: limegreen"></td>
+                            <td style="background-color: limegreen"><button class="update_btn" id="btn" disabled onclick="update(this, <?=$student_ID?>, '<?=$abbr?>', <?=$rankID?>, 1)"></button></td>
 
                             <?php
 
@@ -125,7 +126,7 @@ if(isset($_GET["id"]))
                         {
                             ?>
 
-                            <td style="background-color: darkred; opacity: 0.6;"></td>
+                            <td style="background-color: #A94530;"><button class="update_btn" disabled onclick="update(this, <?=$student_ID?>, '<?=$abbr?>', <?=$rankID?>, 0)"></button></td>
 
                             <?php
                         }
@@ -155,6 +156,47 @@ if(isset($_GET["id"]))
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+<script>
+
+    function activateBtn()
+    {
+        if(document.getElementById("btn").disabled)
+        {
+            $(".update_btn").prop("disabled", false);
+            $(".update_btn").css("cursor", "pointer");
+        }
+        else
+        {
+            $(".update_btn").prop("disabled", true);
+            $(".update_btn").css("cursor", "default");
+        }
+
+    }
+
+    function update(element, student_id, module, rank, checked){
+
+        jQuery.ajax({
+            type: "POST",
+            url: "ajax/update_modules.php",
+            data: {student_id: student_id, module: module, rank: rank, checked: checked},
+            cache: false
+        });
+
+        if(checked == 1)
+        {
+
+            $(element).css( "background-color", "#A94530");
+        } else
+        {
+
+            $(element).css( "background-color", "limegreen");
+        }
+
+    }
+
+</script>
 
 </body>
 </html>
