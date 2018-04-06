@@ -17,7 +17,7 @@
     height: 3rem;
 }
 
-.right table tbody button
+.right table tbody button, .delete
 {
     padding: 0;
     height: 100%;
@@ -25,6 +25,15 @@
     background-color: Transparent;
     border: none;
     outline:none;
+}
+
+.delete
+{
+    width: 2rem;
+    float: right;
+    height: 1.4rem;
+    cursor: pointer;
+    display: none;
 }
 
 .left table th
@@ -46,7 +55,10 @@
 
 h6
 {
-    font-size: .9rem;
+    font-size: 1rem;
+    width: calc(100% - 3rem);
+    margin: 0;
+    float: left;
 }
 
 .modal-content

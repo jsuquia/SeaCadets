@@ -15,8 +15,6 @@ if(isset($_POST["submit"]))
     $surname = $_POST["surname"];
     $rank = $_POST["rank"];
 
-    echo $name . $surname . $rank;
-
     $stmt = $conn->prepare("INSERT INTO mydb.students (Name, Surname, Rank) VALUES (?,?,?)");
     $stmt->bind_param("ssi", $name, $surname, $rank);
 
@@ -25,5 +23,26 @@ if(isset($_POST["submit"]))
     $redirect_uri = $_SERVER['HTTP_REFERER'];
     header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
     exit();
+
+}
+
+if(isset($_POST["delete"]))
+{
+
+    $id = $_POST["student_id"];
+
+    $sql = "DELETE FROM mydb.students WHERE ID = $id";
+
+    if ($conn->query($sql) !== TRUE)
+    {
+        echo "Error deleting record: " . $conn->error;
+    } else
+    {
+        $redirect_uri = $_SERVER['HTTP_REFERER'];
+        header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
+        exit();
+    }
+
+
 
 }

@@ -48,45 +48,45 @@ if(isset($_GET["id"]))
 
             </div>
 
-            <!-- Modal -->
-            <div class="modal fade" id="addStudent" tabindex="-1" role="dialog" aria-labelledby="addStudent" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Add Student</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form action="models/students_model.php" method ="post">
-                            <div class="modal-body">
-                                <input type="hidden" name="rank" value="<?=$rankID?>"/>
-
-                                <div class="row name">
-                                    <h6 class="col-12 col-md-3 text">Name</h6>
-                                    <input type="text" name="name" class="col-12 col-md-9 form-control" id="name" placeholder="Gordon" required>
-                                </div>
-                                <br>
-                                <div class="row surname">
-                                    <h6 class="col-12 col-md-3 text">Surname</h6>
-                                    <input type="text" name="surname" class="col-12 col-md-9 form-control d-inline" id="surname" placeholder="Ramsay" required>
-                                </div>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" name="submit" class="btn btn-primary">Add</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
             <div class="col-2">
                 <form action="logout.php">
                     <button type="submit" class="logout align-bottom" title="Logout">
                         <i class="fa fa-power-off fa-2x" style="color: red;"></i>
                     </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addStudent" tabindex="-1" role="dialog" aria-labelledby="addStudent" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Student</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="models/students_model.php" method ="post">
+                    <div class="modal-body">
+                        <input type="hidden" name="rank" value="<?=$rankID?>"/>
+
+                        <div class="row name">
+                            <h6 class="col-12 col-md-3 text">Name</h6>
+                            <input type="text" name="name" class="col-12 col-md-9 form-control" id="name" placeholder="Gordon" required>
+                        </div>
+                        <br>
+                        <div class="row surname">
+                            <h6 class="col-12 col-md-3 text">Surname</h6>
+                            <input type="text" name="surname" class="col-12 col-md-9 form-control d-inline" id="surname" placeholder="Ramsay" required>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" name="submit" class="btn btn-primary">Add</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -118,7 +118,15 @@ if(isset($_GET["id"]))
                     ?>
 
                     <tr>
-                        <th scope="row"><h6><?=$name?> <?=$surname?></h6></th>
+                        <th class="student_name" scope="row">
+                            <h6><?=$name?> <?=$surname?></h6>
+                            <form action="models/students_model.php" method ="post">
+                                <input type="hidden" name="student_id" value="<?=$student_ID?>"/>
+                                <button type="submit" name="delete" class="delete">
+                                    <i class="fa fa-trash-o" style="color: red;"></i>
+                                </button>
+                            </form>
+                        </th>
                     </tr>
 
                     <?php
@@ -231,6 +239,14 @@ if(isset($_GET["id"]))
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
 <script>
+
+    $(document).ready(function () {
+        $(document).on('mouseenter', '.student_name', function () {
+            $(this).find(":button").show();
+        }).on('mouseleave', '.student_name', function () {
+            $(this).find(":button").hide();
+        });
+    });
 
     function activateBtn()
     {
