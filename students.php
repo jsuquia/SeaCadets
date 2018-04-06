@@ -85,7 +85,7 @@ if(isset($_GET["id"]))
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" name="submit" class="btn btn-primary">Add</button>
+                        <button type="submit" name="add" class="btn btn-primary">Add</button>
                     </div>
                 </form>
             </div>
@@ -123,7 +123,7 @@ if(isset($_GET["id"]))
                             <form action="models/students_model.php" method ="post">
                                 <input type="hidden" name="student_id" value="<?=$student_ID?>"/>
                                 <button type="submit" name="delete" class="delete">
-                                    <i class="fa fa-trash-o" style="color: red;"></i>
+                                    <i class="fa fa-trash-o"></i>
                                 </button>
                             </form>
                         </th>
@@ -150,7 +150,7 @@ if(isset($_GET["id"]))
 
                 $modules_arr = array();
 
-                $sql = "SELECT abbr FROM mydb.modules WHERE Rank=$rankID";
+                $sql = "SELECT module, abbr FROM mydb.modules WHERE Rank=$rankID";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0)
@@ -159,11 +159,16 @@ if(isset($_GET["id"]))
                     while($row = $result->fetch_assoc())
                     {
                         $abbr = $row["abbr"];
+                        $module = $row["module"];
                         $modules_arr[] = $row["abbr"];
 
                         ?>
 
-                        <th scope="col"><?=$abbr?></th>
+                        <th scope="col">
+                            <div><?=$abbr?></div>
+                            <div class="caption"><?=$module?></div>
+                        </th>
+
 
                         <?php
                     }

@@ -8,7 +8,7 @@
 
 require('../php_scripts/db.php');
 
-if(isset($_POST["submit"]))
+if(isset($_POST["add"]))
 {
 
     $name = $_POST["name"];
@@ -42,7 +42,5 @@ if(isset($_POST["delete"]))
         header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
         exit();
     }
-
-
 
 }

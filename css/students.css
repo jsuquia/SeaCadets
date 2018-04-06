@@ -33,6 +33,7 @@
     float: right;
     height: 1.4rem;
     cursor: pointer;
+    color: red;
     display: none;
 }
 
@@ -76,4 +77,24 @@ h6
     text-align: left;
     padding-left: 2rem;
     padding-top: 0.7rem;
+}
+
+.caption
+{
+    position: absolute;
+    z-index: 1000;
+    background-color: #52657A;
+    text-wrap: none;
+    height: 2.5rem;
+    left: 42%;
+    top: 5.9rem;
+    border-radius: 5px;
+    padding: 0.1rem .6rem;
+    color: #EAF2FA;
+    text-align: center;
+    display: none;
+}
+
+div:hover + .caption {
+    display: block;
 }
