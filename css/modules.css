@@ -23,14 +23,18 @@
     z-index: 1000;
     background-color: #52657A;
     width: 10rem;
-    left: 4.5rem;
-    top: 8rem;
+    left: -2rem;
+    top: 4rem;
     border-radius: 5px;
     padding: 0.1rem .6rem;
     color: #EAF2FA;
     display: none;
 }
 
-button:hover + .title {
-    display: block;
+@media (max-width: 992px)
+{
+    button:hover + .title {
+        display: block;
+    }
 }
+
