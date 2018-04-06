@@ -57,7 +57,7 @@ if(isset($_GET["id"]))
     <div class="row">
         <?php
 
-        $sql = "SELECT module, abbr FROM mydb.modules WHERE rank=$rankID";
+        $sql = "SELECT ID, module, abbr FROM mydb.modules WHERE rank=$rankID";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0)
@@ -65,6 +65,7 @@ if(isset($_GET["id"]))
             // output data of each row
             while($row = $result->fetch_assoc())
             {
+                $module_ID = $row["ID"];
                 $module = $row["module"];
                 $abbr = $row["abbr"];
 
@@ -72,13 +73,21 @@ if(isset($_GET["id"]))
 
                 <div class="col-4 col-md-2" id="rankdiv">
                     <div class="text-center">
-                        <button class="modules">
-                            <?=$abbr?>
-                        </button>
-                        <p class="d-none d-md-block"><?=$module?></p>
-                        <h4 class="d-md-none"> </h4>
+                        <form action="attendance.php" method ="post">
+                            <input type="hidden" name="module_id" value="<?=$module_ID?>"/>
+                            <input type="hidden" name="module" value="<?=$module?>"/>
+                            <input type="hidden" name="abbr" value="<?=$abbr?>"/>
+                            <input type="hidden" name="rank" value="<?=$rankID?>"/>
+                            <button type="submit" name="submit" class="modules">
+                                <?=$abbr?>
+                            </button>
+                            <div class="title"><?=$module?></div>
+                            <p class="d-none d-md-block"><?=$module?></p>
+                            <h4 class="d-md-none"> </h4>
+                        </form>
                     </div>
                 </div>
+
 
                 <?php
             }

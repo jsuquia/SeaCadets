@@ -16,3 +16,21 @@
         height: 8rem;
     }
 }
+
+.title
+{
+    position: absolute;
+    z-index: 1000;
+    background-color: #52657A;
+    width: 10rem;
+    left: 4.5rem;
+    top: 8rem;
+    border-radius: 5px;
+    padding: 0.1rem .6rem;
+    color: #EAF2FA;
+    display: none;
+}
+
+button:hover + .title {
+    display: block;
+}

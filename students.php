@@ -66,7 +66,7 @@ if(isset($_GET["id"]))
             <tbody>
             <?php
 
-            $sql = "SELECT ID, Name, Surname FROM mydb.students WHERE Rank=$rankID";
+            $sql = "SELECT ID, Name, Surname FROM mydb.students WHERE Rank=$rankID ORDER BY Surname ASC";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0)
