@@ -41,8 +41,45 @@ if(isset($_GET["id"]))
     <div class="main-header">
         <div class="row">
             <div class="col-10">
-                <h1 class="display-2 d-inline">Students <button type="button" class="btn btn-primary" id="enabling_btn" onclick="activateBtn()">Update Progress</button></h1>
+                <h1 class="display-2 d-inline">Students
+                    <button type="button" class="btn btn-primary" id="enabling_btn" onclick="activateBtn()">Update Progress</button>
+                    <button type="button" class="btn btn-primary" id="adding_student" data-toggle="modal" data-target="#addStudent">Add Student</button>
+                </h1>
 
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="addStudent" tabindex="-1" role="dialog" aria-labelledby="addStudent" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add Student</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="models/students_model.php" method ="post">
+                            <div class="modal-body">
+                                <input type="hidden" name="rank" value="<?=$rankID?>"/>
+
+                                <div class="row name">
+                                    <h6 class="col-12 col-md-3 text">Name</h6>
+                                    <input type="text" name="name" class="col-12 col-md-9 form-control" id="name" placeholder="Gordon" required>
+                                </div>
+                                <br>
+                                <div class="row surname">
+                                    <h6 class="col-12 col-md-3 text">Surname</h6>
+                                    <input type="text" name="surname" class="col-12 col-md-9 form-control d-inline" id="surname" placeholder="Ramsay" required>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" name="submit" class="btn btn-primary">Add</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
 
             <div class="col-2">
