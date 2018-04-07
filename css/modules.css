@@ -38,3 +38,71 @@
     }
 }
 
+.main-header h1 button
+{
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* Update Modules css */
+
+.container
+{
+    width: 80%;
+}
+
+th, td
+{
+    padding-left: 2rem!important;
+}
+
+.table thead th, .table td
+{
+    border: none;
+}
+
+.table .fa
+{
+    color: dimgrey;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.table .fa-times
+{
+    color: darkred;
+}
+
+/* Modal */
+
+.modal-content
+{
+    margin-top: 30vh;
+}
+
+.modal .row
+{
+    margin-right: 1rem;
+}
+
+.modal h6
+{
+    margin-top: 0.6rem;
+}
+
+/* Alert */
+
+.alert
+{
+    position: fixed;
+    height: 3rem;
+    width: 40vw;
+    margin-left: calc((100vw - 40vw)/2);
+    z-index: 1000;
+    margin-top: 2rem;
+    border: 2px solid;
+    display: none;
+}
+

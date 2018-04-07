@@ -41,7 +41,9 @@ if(isset($_GET["id"]))
     <div class="main-header">
         <div class="row">
             <div class="col-10">
-                <h1 class="display-2">Modules</h1>
+                <h1 class="display-2 d-inline">Modules
+                    <button type="button" class="btn btn-primary" id="update_modules" onClick="document.location.href='/scweb/update_modules.php?id=<?=$rankID?>'">Update Modules</button>
+                </h1>
             </div>
 
             <div class="col-2">

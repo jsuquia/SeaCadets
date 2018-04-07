@@ -2,31 +2,17 @@
 /**
  * Created by IntelliJ IDEA.
  * User: Javier
- * Date: 05/04/2018
- * Time: 15:47
+ * Date: 07/04/2018
+ * Time: 13:31
  */
 
 require('../php_scripts/db.php');
 
-$checked = @$_POST['checked'];
-$id = @$_POST['student_id'];
+$id = @$_POST['id'];
 $module = @$_POST['module'];
-$rank = @$_POST['rank'];
+$abbr = @$_POST['abbr'];
 
-if($checked == 1)
-{
-    $sql = "DELETE FROM mydb.completed_modules WHERE student_ID = $id AND module = '$module'";
+$stmt = $conn->prepare("UPDATE mydb.modules SET module=?, abbr=? WHERE ID=$id");
 
-    if ($conn->query($sql) !== TRUE)
-    {
-        echo "Error deleting record: " . $conn->error;
-    }
-} else
-{
-    $stmt = $conn->prepare("INSERT INTO mydb.completed_modules (student_ID, module, rank, date) VALUES (?,?,?,?)");
-    $stmt->bind_param("isis", $id, $module, $rank, $date);
-
-    $date = date("Y-m-d H:i:s");
-
-    $stmt->execute();
-}
+$stmt->bind_param("ss", $module, $abbr);
+$stmt->execute();

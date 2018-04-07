@@ -72,6 +72,11 @@ h6
     margin-right: 1rem;
 }
 
+.modal h6
+{
+    margin-top: 0.6rem;
+}
+
 .text
 {
     text-align: left;
