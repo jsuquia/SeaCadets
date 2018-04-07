@@ -41,9 +41,13 @@ if(isset($_POST["submit"]))
 <div class="container-fluid">
 
     <div class="main-header">
+        <div class="back">
+            <a href="/scweb/modules.php?id=<?=$rank?>"><i class="fa fa-arrow-left"></i></i>&nbsp;back</a>
+        </div>
+
         <div class="row">
             <div class="col-10">
-                <h1 class="display-2 d-inline">Attendance &nbsp;</h1> <h4 class="d-inline">for <?=$module?> (<?=$abbr?>) - <?=date("d M Y")?></h4>
+                <h1 class="display-2 d-inline"><a href="/scweb/ranks.php">Ranks/</a><a href="/scweb/modules.php?id=<?=$rank?>">Modules/</a>Attendance &nbsp;</h1> <h4 class="d-inline">for <?=$module?> (<?=$abbr?>) - <?=date("d M Y")?></h4>
             </div>
 
             <div class="col-2">

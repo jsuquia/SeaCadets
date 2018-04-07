@@ -42,7 +42,7 @@ if(isset($_POST["submit"]))
                     setcookie("user_session",$randomstring,time() + (10 * 365 * 24 * 60 * 60), "/");
 
                     //$redirect_uri = 'https://' . $_SERVER['HTTP_HOST'] . '/2017-projects/seacadet/index.php';
-                    $redirect_uri = '/scweb/staff_main.php';
+                    $redirect_uri = '/scweb/ranks.php';
                     header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
                     exit();
                 }

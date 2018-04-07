@@ -23,13 +23,16 @@ require('php_scripts/check_cookie.php');
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/staff_main.css">
+    <link rel="stylesheet" href="css/ranks.css">
 </head>
 <body>
 
 <div class="container-fluid">
 
     <div class="main-header">
+        <div class="back">
+            <a>&nbsp;</a>
+        </div>
         <div class="row">
             <div class="col-10">
                 <h1 class="display-2">Ranks</h1>

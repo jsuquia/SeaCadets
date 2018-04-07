@@ -13,7 +13,7 @@ if(isset($_GET["id"]))
     $rankID = $_GET["id"];
 } else
 {
-    $redirect_uri = '/scweb/staff_main.php';
+    $redirect_uri = '/scweb/ranks.php';
     header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
     exit();
 }

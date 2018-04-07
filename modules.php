@@ -13,7 +13,7 @@ if(isset($_GET["id"]))
     $rankID = $_GET["id"];
 } else
 {
-    $redirect_uri = '/scweb/staff_main.php';
+    $redirect_uri = '/scweb/ranks.php';
     header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
     exit();
 }
@@ -39,9 +39,12 @@ if(isset($_GET["id"]))
 <div class="container-fluid">
 
     <div class="main-header">
+        <div class="back">
+            <a href="/scweb/ranks.php"><i class="fa fa-arrow-left"></i></i>&nbsp;back</a>
+        </div>
         <div class="row">
             <div class="col-10">
-                <h1 class="display-2 d-inline">Modules
+                <h1 class="display-2 d-inline"><a href="/scweb/ranks.php">Ranks/</a>Modules
                     <button type="button" class="btn btn-primary" id="update_modules" onClick="document.location.href='/scweb/update_modules.php?id=<?=$rankID?>'">Update Modules</button>
                 </h1>
             </div>

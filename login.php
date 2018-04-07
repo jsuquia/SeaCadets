@@ -7,8 +7,8 @@
  */
 if(isset($_COOKIE["user_session"]))
 {
-    //$redirect_uri = 'https://' . $_SERVER['HTTP_HOST'] . '/2017-projects/seacadet/staff_main.php';
-    $redirect_uri = '/scweb/staff_main.php';
+    //$redirect_uri = 'https://' . $_SERVER['HTTP_HOST'] . '/2017-projects/seacadet/ranks.php';
+    $redirect_uri = '/scweb/ranks.php';
     header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
 }
 
