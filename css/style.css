@@ -1,18 +1,31 @@
+
 .container-fluid
 {
     padding: 3rem;
     padding-left: 5rem;
+    padding-top: 11rem;
 }
 
 .main-header
 {
-    margin-bottom: 2rem;
     border-bottom: 1px solid #5FCFE3;
+    position: fixed;
+    top: 0rem;
+    padding-top: 3rem;
+    width: calc(100vw - 8rem);
+    background: white;
+    z-index: 1000;
 }
 
 .main-header form
 {
     text-align: right;
+}
+
+.main-header h1 button
+{
+    margin-left: 1rem;
+    margin-top: 0.5rem;
 }
 
 .logout
