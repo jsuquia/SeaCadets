@@ -1,0 +1,77 @@
+
+.container
+{
+    width: 90%;
+}
+
+.sub-header h4
+{
+    color: grey;
+}
+
+
+.btn, .table
+{
+    /*shadow*/
+    -moz-box-shadow:    6px 6px 6px 1px #D2D9E1;
+    -webkit-box-shadow: 6px 6px 6px 1px #D2D9E1;
+    box-shadow:         6px 6px 6px 1px #D2D9E1;
+}
+
+.sub-header input::placeholder {
+    color: lightgrey;
+}
+
+.btn
+{
+    background-color: #5FCFE3;
+    color: black;
+    border: none;
+    width: 10rem;
+    height: 50px;
+    cursor: pointer;
+}
+
+.btn h5
+{
+    margin: 0;
+}
+
+.table
+{
+    background-color: white;
+    font-size: 1.3rem;
+}
+
+th, td
+{
+    padding-left: 2rem!important;
+}
+
+.table thead th, .table td
+{
+    border: none;
+}
+
+.table .fa
+{
+    color: dimgrey;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.table .fa-times
+{
+    color: darkred;
+}
+
+tr p
+{
+    margin: 0;
+}
+
+#other-btn
+{
+    margin-right: 19%;
+}

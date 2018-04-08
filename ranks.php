@@ -35,15 +35,28 @@ require('php_scripts/check_cookie.php');
         </div>
         <div class="row">
             <div class="col-10">
-                <h1 class="display-2">Ranks</h1>
+                <h1 class="display-2">Ranks
+
+                </h1>
             </div>
 
             <div class="col-2">
-                <form action="logout.php">
-                    <button type="submit" class="logout align-bottom" title="Logout">
-                        <i class="fa fa-power-off fa-2x" style="color: red;"></i>
-                    </button>
-                </form>
+                <div class="row">
+                    <div class="col-6">
+                        <button type="button" class="btn btn-primary" id="settings_btn" onClick="document.location.href='/scweb/settings.php'">Settings
+                            <i class="fa fa-cog" style="color: white;"></i>
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <form action="logout.php">
+                            <button type="submit" class="logout align-bottom" title="Logout">
+                                <i class="fa fa-power-off fa-2x" style="color: red;"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>

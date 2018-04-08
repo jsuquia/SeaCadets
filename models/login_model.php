@@ -12,7 +12,7 @@ if(isset($_POST["submit"]))
 {
 
     $username = $_POST["username"];
-    $password = $_POST["password"]; //HASH THIS HERE PLEASE
+    $password = $_POST["password"];
 
     //$password_hash = password_hash( "admin", PASSWORD_DEFAULT, [ 'cost' => 11 ] );
 
@@ -52,13 +52,14 @@ if(isset($_POST["submit"]))
                     header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
                     exit();
                 }
-            } else {
-                $redirect_uri = $_SERVER['HTTP_REFERER'];
-                header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
-                exit();
             }
 
         }
+
+        $redirect_uri = $_SERVER['HTTP_REFERER'];
+        header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
+        exit();
+
     } else {
         //0 results
     }

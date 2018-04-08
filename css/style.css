@@ -34,10 +34,9 @@
     color: black;
 }
 
-.back a, i
+.back a, .back i
 {
     color: black;
-    //padding-bottom: 1rem;
 }
 
 .main-header a:hover
@@ -52,5 +51,5 @@
     border: none;
     cursor:pointer;
     outline:none;
-    margin-top: 4rem;
+    margin-top: 3.4rem;
 }

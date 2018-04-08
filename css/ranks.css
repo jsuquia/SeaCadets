@@ -25,15 +25,8 @@
     padding: 3rem;
 }
 
-/*.quarter-circle {*/
-    /*position: fixed;*/
-    /*bottom: 0;*/
-    /*right: 0;*/
-    /*height: 20rem;*/
-    /*width: 20rem;*/
-    /*line-height: 0;*/
-    /*background: lightblue;*/
-    /*border-top-left-radius: 100%;*/
-    /*border: 2px solid;*/
-    /*font-size: 1.5rem;*/
-/*}*/
+#settings_btn
+{
+    margin-top: 3rem;
+    float: right;
+}
