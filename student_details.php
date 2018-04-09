@@ -80,6 +80,8 @@ if ($result->num_rows > 0) {
         <br>
 
         <form action="models/student_details_model.php" method ="post">
+            <input type="hidden" name="student_id" value="<?=$student_id?>"/>
+
             <div class="row">
                 <div class="col-6">
                     <div class="col-12">
@@ -122,14 +124,14 @@ if ($result->num_rows > 0) {
                                     {
                                         ?>
 
-                                        <option selected><?=$rank?></option>
+                                        <option selected value="<?=$id?>"><?=$rank?></option>
 
                                         <?php
                                     } else
                                     {
                                         ?>
 
-                                        <option><?=$rank?></option>
+                                        <option value="<?=$id?>"><?=$rank?></option>
 
                                         <?php
                                     }
