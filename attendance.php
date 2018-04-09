@@ -42,7 +42,7 @@ if(isset($_POST["submit"]))
 
     <div class="main-header">
         <div class="back">
-            <a href="/scweb/modules.php?id=<?=$rank?>"><i class="fa fa-arrow-left"></i></i>&nbsp;back</a>
+            <a href="<?=$_SERVER['HTTP_REFERER']?>"><i class="fa fa-arrow-left"></i></i>&nbsp;back</a>
         </div>
 
         <div class="row">

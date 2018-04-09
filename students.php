@@ -107,7 +107,7 @@ if(isset($_GET["id"]))
             <tbody>
             <?php
 
-            $sql = "SELECT ID, Name, Surname FROM mydb.students WHERE Rank=$rankID ORDER BY Surname ASC";
+            $sql = "SELECT ID, name, surname FROM mydb.students WHERE rank=$rankID ORDER BY surname ASC";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0)
@@ -116,14 +116,14 @@ if(isset($_GET["id"]))
                 while($row = $result->fetch_assoc())
                 {
                     $student_ID = $row["ID"];
-                    $name = $row["Name"];
-                    $surname = $row["Surname"];
+                    $name = $row["name"];
+                    $surname = $row["surname"];
 
                     ?>
 
                     <tr>
                         <th class="student_name" scope="row">
-                            <h6><?=$name?> <?=$surname?></h6>
+                            <h6><a href="student_details.php?id=<?=$student_ID?>"><?=$name?> <?=$surname?></a></h6>
                             <form action="models/students_model.php" method ="post">
                                 <input type="hidden" name="student_id" value="<?=$student_ID?>"/>
                                 <button type="submit" name="delete" class="delete">
@@ -186,7 +186,7 @@ if(isset($_GET["id"]))
             <tbody>
             <?php
 
-            $sql = "SELECT ID FROM mydb.students WHERE Rank=$rankID";
+            $sql = "SELECT ID FROM mydb.students WHERE rank=$rankID";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0)
@@ -210,7 +210,7 @@ if(isset($_GET["id"]))
                             {
                                 ?>
 
-                                <td style="background-color: limegreen"><button class="update_btn" id="btn" disabled onclick="update(this, <?=$student_ID?>, '<?=$abbr?>', <?=$rankID?>, 1)"></button></td>
+                                <td style="background-color: limegreen"><button class="update_btn" id="btn" data-checked="1" disabled onclick="update(this, <?=$student_ID?>, '<?=$abbr?>', <?=$rankID?>)"></button></td>
 
                                 <?php
 
@@ -219,7 +219,7 @@ if(isset($_GET["id"]))
                             {
                                 ?>
 
-                                <td style="background-color: #A94530;"><button class="update_btn" disabled onclick="update(this, <?=$student_ID?>, '<?=$abbr?>', <?=$rankID?>, 0)"></button></td>
+                                <td style="background-color: white;"><button class="update_btn fa fa-times" data-checked="0" disabled onclick="update(this, <?=$student_ID?>, '<?=$abbr?>', <?=$rankID?>)"></button></td>
 
                                 <?php
                             }
@@ -274,11 +274,13 @@ if(isset($_GET["id"]))
 
     }
 
-    function update(element, student_id, module, rank, checked){
+    function update(element, student_id, module, rank){
+
+        var checked = $(element).data("checked");
 
         jQuery.ajax({
             type: "POST",
-            url: "ajax/update_modules.php",
+            url: "ajax/update_completed_modules.php",
             data: {student_id: student_id, module: module, rank: rank, checked: checked},
             cache: false
         });
@@ -286,11 +288,15 @@ if(isset($_GET["id"]))
         if(checked == 1)
         {
 
-            $(element).css( "background-color", "#A94530");
+            $(element).css( "background-color", "#ffc1c1");
+            $(element).prop( "class", "update_btn fa fa-times");
+            $(element).data("checked", 0);
         } else
         {
 
             $(element).css( "background-color", "limegreen");
+            $(element).prop( "class", "update_btn fa fa-check");
+            $(element).data("checked", 1);
         }
 
     }

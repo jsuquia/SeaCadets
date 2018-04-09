@@ -15,8 +15,17 @@ if(isset($_POST["add"]))
     $surname = $_POST["surname"];
     $rank = $_POST["rank"];
 
-    $stmt = $conn->prepare("INSERT INTO mydb.students (Name, Surname, Rank) VALUES (?,?,?)");
-    $stmt->bind_param("ssi", $name, $surname, $rank);
+    $stmt = $conn->prepare("INSERT INTO mydb.users (username) VALUES (?)");
+    $stmt->bind_param("s", $username);
+
+    $username = strtolower($name[0].$surname);
+
+    $stmt->execute();
+
+    $last_id = $conn->insert_id;
+
+    $stmt = $conn->prepare("INSERT INTO mydb.students (name, surname, rank, user_id) VALUES (?,?,?,?)");
+    $stmt->bind_param("ssii", $name, $surname, $rank, $last_id);
 
     $stmt->execute();
 
@@ -31,7 +40,24 @@ if(isset($_POST["delete"]))
 
     $id = $_POST["student_id"];
 
+    $sql = "SELECT user_id FROM mydb.students WHERE ID=$id";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $user_id = $row["user_id"];
+        }
+    }
+
     $sql = "DELETE FROM mydb.students WHERE ID = $id";
+
+    if ($conn->query($sql) !== TRUE)
+    {
+        echo "Error deleting record: " . $conn->error;
+    }
+
+    $sql = "DELETE FROM mydb.users WHERE ID = $user_id";
 
     if ($conn->query($sql) !== TRUE)
     {

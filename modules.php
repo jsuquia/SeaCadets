@@ -40,7 +40,7 @@ if(isset($_GET["id"]))
 
     <div class="main-header">
         <div class="back">
-            <a href="/scweb/ranks.php"><i class="fa fa-arrow-left"></i></i>&nbsp;back</a>
+            <a href="<?=$_SERVER['HTTP_REFERER']?>"><i class="fa fa-arrow-left"></i></i>&nbsp;back</a>
         </div>
         <div class="row">
             <div class="col-10">

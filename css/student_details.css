@@ -1,0 +1,31 @@
+
+.title
+{
+    margin-left: 1rem;
+}
+
+.details, .dropdown
+{
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid black;
+    height: 2rem;
+    margin-top: 1rem;
+    padding-left: 1rem;
+}
+
+.update_details
+{
+    float: right;
+    margin-right: 1rem;
+}
+
+.toast-top-center
+{
+    margin-top: 50vh!important;
+}
+
+#toast-container>div
+{
+    opacity: 1!important;
+}

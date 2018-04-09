@@ -49,6 +49,7 @@ require('php_scripts/check_cookie.php');
         </div>
     </div>
 
+    <br>
     <div class="container">
         <div class="header">
             <h2>ADD STAFF MEMBER</h2>
