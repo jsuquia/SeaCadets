@@ -12,8 +12,16 @@ $username = @$_POST['username'];
 $id = @$_POST['id'];
 $name = @$_POST['name'];
 $surname = @$_POST['surname'];
+$email = @$_POST['email'];
+$privilege = @$_POST['privilege'];
 
-$stmt = $conn->prepare("UPDATE mydb.users SET username=?, name=?, surname=? WHERE ID=$id");
+$stmt = $conn->prepare("UPDATE mydb.users SET username=?, privilege=? WHERE ID=$id");
 
-$stmt->bind_param("sss", $username, $name, $surname);
+$stmt->bind_param("si", $username, $privilege);
+$stmt->execute();
+
+$stmt = $conn->prepare("UPDATE mydb.staff SET name=?, surname=?, email=? WHERE user_id=$id");
+
+$stmt->bind_param("sss", $name, $surname, $email);
+
 $stmt->execute();

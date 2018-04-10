@@ -178,6 +178,8 @@ require('../php_scripts/check_privilege.php');
                 <th>USERNAME</th>
                 <th>NAME</th>
                 <th>SURNAME</th>
+                <th>EMAIL</th>
+                <th>PRIVILEGE</th>
                 <th></th>
             </tr>
             </thead>
@@ -185,7 +187,7 @@ require('../php_scripts/check_privilege.php');
 
             <?php
 
-            $sql = "SELECT users.*, staff.name, staff.surname, staff.email FROM mydb.users LEFT JOIN mydb.staff ON users.ID = staff.user_id";
+            $sql = "SELECT users.*, staff.name, staff.surname, staff.email FROM mydb.users LEFT JOIN mydb.staff ON users.ID = staff.user_id WHERE users.privilege = 1 OR users.privilege = 2";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -198,6 +200,37 @@ require('../php_scripts/check_privilege.php');
                         <td id="username" data-id="<?=$row["ID"]?>"><?=$row["username"]?></td>
                         <td id="name"><?=$row["name"]?></td>
                         <td id="surname"><?=$row["surname"]?></td>
+                        <td id="email"><?=$row["email"]?></td>
+                        <td id="privilege" value="<?=$row["privilege"]?>">
+
+                            <select id="privilege_dropdown">
+
+                                <?php
+
+                                    if($row["privilege"] == 1)
+                                    {
+                                        ?>
+
+                                        <option value="1" selected>Admin</option>
+                                        <option value="2">Staff</option>
+
+                                        <?php
+                                    } else
+                                    {
+                                        ?>
+
+                                        <option value="1">Admin</option>
+                                        <option value="2" selected>Staff</option>
+
+                                        <?php
+                                    }
+
+                                ?>
+                            </select>
+
+                            <p id="privilege_text"><?php if($row["privilege"] == 1) echo "Admin"; else echo "Staff";?></p>
+
+                        </td>
                         <td style="width: 15%;">
                             <button class="fa fa-pencil-square-o fa-2x" onclick="edit(this)"></button>
                             <form action="models/settings_model.php" method ="post" style="display: inline;">
@@ -233,6 +266,10 @@ require('../php_scripts/check_privilege.php');
         var username = $(element ).closest("tr").find('#username');
         var name = $(element ).closest("tr").find('#name');
         var surname = $(element ).closest("tr").find('#surname');
+        var email = $(element ).closest("tr").find('#email');
+        var privilege = $(element ).closest("tr").find('#privilege');
+        var privilege_text = $(element ).closest("tr").find('#privilege_text');
+        var privilege_dropdown = $(element ).closest("tr").find('#privilege_dropdown');
 
         isEditable=username.is('.editable');
         username.prop('contenteditable',!isEditable).toggleClass('editable');
@@ -243,23 +280,36 @@ require('../php_scripts/check_privilege.php');
         isEditable=surname.is('.editable');
         surname.prop('contenteditable',!isEditable).toggleClass('editable');
 
+        isEditable=email.is('.editable');
+        email.prop('contenteditable',!isEditable).toggleClass('editable');
+
         if(!isEditable)
         {
             $(element).toggleClass('fa fa-pencil-square-o fa-2x fa fa-check fa-2x');
             username.css( "background-color", "#F2F2F2");
             name.css( "background-color", "#F2F2F2");
             surname.css( "background-color", "#F2F2F2");
+            email.css( "background-color", "#F2F2F2");
+            privilege.css( "background-color", "#F2F2F2");
+            privilege_text.hide();
+            privilege_dropdown.show();
+
         } else
         {
             $(element).toggleClass('fa fa-check fa-2x fa fa-pencil-square-o fa-2x');
             username.css( "background-color", "white");
             name.css( "background-color", "white");
             surname.css( "background-color", "white");
+            email.css( "background-color", "white");
+            privilege.css( "background-color", "white");
+            privilege_text.show();
+            privilege_text.text(privilege_dropdown.find(":selected").text());
+            privilege_dropdown.hide();
 
             jQuery.ajax({
                 type: "POST",
                 url: "ajax/update_settings.php",
-                data: {id: id, username: username.text(), name: name.text(), surname: surname.text()},
+                data: {id: id, username: username.text(), name: name.text(), surname: surname.text(), email: email.text(), privilege: privilege_dropdown.val()},
                 cache: false
             });
         }
