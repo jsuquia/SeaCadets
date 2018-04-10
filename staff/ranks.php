@@ -6,7 +6,8 @@
  * Time: 11:52
  */
 
-require('php_scripts/check_cookie.php');
+require('../php_scripts/check_cookie.php');
+require('../php_scripts/check_privilege.php');
 
 ?>
 
@@ -43,12 +44,12 @@ require('php_scripts/check_cookie.php');
             <div class="col-2">
                 <div class="row">
                     <div class="col-6">
-                        <button type="button" class="btn btn-primary" id="settings_btn" onClick="document.location.href='/scweb/settings.php'">Settings
+                        <button type="button" class="btn btn-primary" id="settings_btn" onClick="document.location.href='/scweb/staff/settings.php'">Settings
                             <i class="fa fa-cog" style="color: white;"></i>
                         </button>
                     </div>
                     <div class="col-6">
-                        <form action="logout.php">
+                        <form action="../logout.php">
                             <button type="submit" class="logout align-bottom" title="Logout">
                                 <i class="fa fa-power-off fa-2x" style="color: red;"></i>
                             </button>

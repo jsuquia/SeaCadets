@@ -13,13 +13,13 @@ if(isset($_POST["submit"])) {
 
     if($choice == "students")
     {
-        $redirect_uri = '/scweb/students.php?id=' . $id;
+        $redirect_uri = '/scweb/staff/students.php?id=' . $id;
         header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
         exit();
     }
     else
     {
-        $redirect_uri = '/scweb/modules.php?id=' . $id;
+        $redirect_uri = '/scweb/staff/modules.php?id=' . $id;
         header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
         exit();
     }

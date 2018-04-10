@@ -6,7 +6,7 @@
  * Time: 20:49
  */
 
-require('../php_scripts/db.php');
+require('../../php_scripts/db.php');
 
 if(isset($_POST["update"]))
 {

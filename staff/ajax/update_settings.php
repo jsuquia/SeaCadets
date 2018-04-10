@@ -6,7 +6,7 @@
  * Time: 17:13
  */
 
-require('../php_scripts/db.php');
+require('../../php_scripts/db.php');
 
 $username = @$_POST['username'];
 $id = @$_POST['id'];

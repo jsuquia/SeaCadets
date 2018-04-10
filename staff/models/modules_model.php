@@ -6,7 +6,7 @@
  * Time: 13:25
  */
 
-require('../php_scripts/db.php');
+require('../../php_scripts/db.php');
 
 if(isset($_POST["add"]))
 {

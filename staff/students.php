@@ -6,14 +6,15 @@
  * Time: 19:22
  */
 
-require('php_scripts/check_cookie.php');
+require('../php_scripts/check_cookie.php');
+require('../php_scripts/check_privilege.php');
 
 if(isset($_GET["id"]))
 {
     $rankID = $_GET["id"];
 } else
 {
-    $redirect_uri = '/scweb/ranks.php';
+    $redirect_uri = '/scweb/staff/ranks.php';
     header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
     exit();
 }
@@ -40,12 +41,12 @@ if(isset($_GET["id"]))
 
     <div class="main-header">
         <div class="back">
-            <a href="/scweb/ranks.php"><i class="fa fa-arrow-left"></i></i>&nbsp;back</a>
+            <a href="/scweb/staff/ranks.php"><i class="fa fa-arrow-left"></i></i>&nbsp;back</a>
         </div>
 
         <div class="row">
             <div class="col-10">
-                <h1 class="display-2 d-inline"><a href="/scweb/ranks.php">Ranks/</a>Students
+                <h1 class="display-2 d-inline"><a href="/scweb/staff/ranks.php">Ranks/</a>Students
                     <button type="button" class="btn btn-primary" id="enabling_btn" onclick="activateBtn()">Update Progress</button>
                     <button type="button" class="btn btn-primary" id="adding_student" data-toggle="modal" data-target="#addStudent">Add Student</button>
                 </h1>
@@ -53,7 +54,7 @@ if(isset($_GET["id"]))
             </div>
 
             <div class="col-2">
-                <form action="logout.php">
+                <form action="../logout.php">
                     <button type="submit" class="logout align-bottom" title="Logout">
                         <i class="fa fa-power-off fa-2x" style="color: red;"></i>
                     </button>

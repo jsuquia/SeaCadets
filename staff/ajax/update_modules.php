@@ -6,7 +6,7 @@
  * Time: 13:31
  */
 
-require('../php_scripts/db.php');
+require('../../php_scripts/db.php');
 
 $id = @$_POST['id'];
 $module = @$_POST['module'];

@@ -6,14 +6,15 @@
  * Time: 20:08
  */
 
-require('php_scripts/check_cookie.php');
+require('../php_scripts/check_cookie.php');
+require('../php_scripts/check_privilege.php');
 
 if(isset($_GET["id"]))
 {
     $student_id = $_GET["id"];
 } else
 {
-    $redirect_uri = '/scweb/ranks.php';
+    $redirect_uri = '/scweb/staff/ranks.php';
     header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
     exit();
 }
@@ -62,11 +63,11 @@ if ($result->num_rows > 0) {
 
         <div class="row">
             <div class="col-10">
-                <h1 class="display-2 d-inline"><a href="/scweb/ranks.php">Ranks/</a><a href="<?=$_SERVER['HTTP_REFERER']?>">Students/</a>Student Details</h1>
+                <h1 class="display-2 d-inline"><a href="/scweb/staff/ranks.php">Ranks/</a><a href="<?=$_SERVER['HTTP_REFERER']?>">Students/</a>Student Details</h1>
             </div>
 
             <div class="col-2">
-                <form action="logout.php">
+                <form action="../logout.php">
                     <button type="submit" class="logout align-bottom" title="Logout">
                         <i class="fa fa-power-off fa-2x" style="color: red;"></i>
                     </button>

@@ -6,7 +6,7 @@
  * Time: 16:34
  */
 
-require('php_scripts/check_cookie.php');
+require('../php_scripts/check_privilege.php');
 
 ?>
 
@@ -31,16 +31,16 @@ require('php_scripts/check_cookie.php');
 
     <div class="main-header">
         <div class="back">
-            <a href="/scweb/ranks.php"><i class="fa fa-arrow-left"></i></i>&nbsp;back</a>
+            <a href="/scweb/staff/ranks.php"><i class="fa fa-arrow-left"></i></i>&nbsp;back</a>
         </div>
 
         <div class="row">
             <div class="col-10">
-                <h1 class="display-2 d-inline"><a href="/scweb/ranks.php">Ranks/</a>Settings</h1>
+                <h1 class="display-2 d-inline"><a href="/scweb/staff/ranks.php">Ranks/</a>Settings</h1>
             </div>
 
             <div class="col-2">
-                <form action="logout.php">
+                <form action="../logout.php">
                     <button type="submit" class="logout align-bottom" title="Logout">
                         <i class="fa fa-power-off fa-2x" style="color: red;"></i>
                     </button>
@@ -51,6 +51,64 @@ require('php_scripts/check_cookie.php');
 
     <br>
     <div class="container">
+        <div class="header">
+            <h2>UPDATE YOUR DETAILS</h2>
+        </div>
+        <br>
+
+        <form action="models/settings_model.php" method ="post">
+            <input type="hidden" name="id" value="<?=$user->id?>"/>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="sub-header">
+                        <h4>YOUR <b>USERNAME</b></h4>
+                        <input type="text" name="username" class="form-control" id="username" value="<?=$user->username?>">
+                    </div>
+                    <br>
+                    <div class="sub-header">
+                        <h4>YOUR <b>NAME</b></h4>
+                        <input type="text" name="name" class="form-control" id="name" value="<?=$user->name?>">
+                        <br>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="sub-header">
+                        <h4>NEW <b>PASSWORD</b></h4>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="**********">
+                    </div>
+                    <br>
+                    <div class="sub-header">
+                        <h4>YOUR <b>SURNAME</b></h4>
+                        <input type="text" name="surname" class="form-control" id="surname" value="<?=$user->surname?>">
+                        <br>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="sub-header">
+                        <h4>YOUR <b>EMAIL</b></h4>
+                        <input type="email" name="email" class="form-control" id="email" value="<?=$user->email?>">
+                    </div>
+                    <br>
+                    <div class="sub-header">
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="sub-header">
+                    </div>
+                    <br>
+                    <div class="sub-header text-right">
+                        <button type="submit" name="update" class="btn btn-primary"><h5><b>UPDATE</b></h5></button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+        <br>
+
         <div class="header">
             <h2>ADD STAFF MEMBER</h2>
         </div>
@@ -85,9 +143,25 @@ require('php_scripts/check_cookie.php');
                     </div>
                 </div>
 
-                <div class="col-12 text-right">
-                    <button type="submit" name="add" class="btn btn-primary"><h5><b>ADD</b></h5></button>
+                <div class="col-12 col-lg-6">
+                    <div class="sub-header">
+                        <h4>THEIR <b>EMAIL</b></h4>
+                        <input type="email" name="email" class="form-control" id="email" placeholder="example@hotmail.com" required>
+                    </div>
+                    <br>
+                    <div class="sub-header">
+                    </div>
                 </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="sub-header">
+                    </div>
+                    <br>
+                    <div class="sub-header text-right">
+                        <button type="submit" name="add" class="btn btn-primary"><h5><b>ADD</b></h5></button>
+                    </div>
+                </div>
+
             </div>
         </form>
 
@@ -111,7 +185,7 @@ require('php_scripts/check_cookie.php');
 
             <?php
 
-            $sql = "SELECT * FROM mydb.users";
+            $sql = "SELECT users.*, staff.name, staff.surname, staff.email FROM mydb.users LEFT JOIN mydb.staff ON users.ID = staff.user_id";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {

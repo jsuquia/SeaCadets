@@ -6,7 +6,7 @@
  * Time: 21:42
  */
 
-require('../php_scripts/db.php');
+require('../../php_scripts/db.php');
 
 $id = @$_POST['id'];
 $password = @$_POST['password'];

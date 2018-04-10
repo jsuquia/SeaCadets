@@ -6,14 +6,15 @@
  * Time: 19:22
  */
 
-require('php_scripts/check_cookie.php');
+require('../php_scripts/check_cookie.php');
+require('../php_scripts/check_privilege.php');
 
 if(isset($_GET["id"]))
 {
     $rankID = $_GET["id"];
 } else
 {
-    $redirect_uri = '/scweb/ranks.php';
+    $redirect_uri = '/scweb/staff/ranks.php';
     header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
     exit();
 }
@@ -44,13 +45,13 @@ if(isset($_GET["id"]))
         </div>
         <div class="row">
             <div class="col-10">
-                <h1 class="display-2 d-inline"><a href="/scweb/ranks.php">Ranks/</a>Modules
-                    <button type="button" class="btn btn-primary" id="update_modules" onClick="document.location.href='/scweb/update_modules.php?id=<?=$rankID?>'">Update Modules</button>
+                <h1 class="display-2 d-inline"><a href="/scweb/staff/ranks.php">Ranks/</a>Modules
+                    <button type="button" class="btn btn-primary" id="update_modules" onClick="document.location.href='/scweb/staff/update_modules.php?id=<?=$rankID?>'">Update Modules</button>
                 </h1>
             </div>
 
             <div class="col-2">
-                <form action="logout.php">
+                <form action="../logout.php">
                     <button type="submit" class="logout align-bottom" title="Logout">
                         <i class="fa fa-power-off fa-2x" style="color: red;"></i>
                     </button>

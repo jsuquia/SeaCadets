@@ -6,7 +6,8 @@
  * Time: 19:22
  */
 
-require('php_scripts/check_cookie.php');
+require('../php_scripts/check_cookie.php');
+require('../php_scripts/check_privilege.php');
 
 if(isset($_POST["submit"]))
 {
@@ -47,11 +48,11 @@ if(isset($_POST["submit"]))
 
         <div class="row">
             <div class="col-10">
-                <h1 class="display-2 d-inline"><a href="/scweb/ranks.php">Ranks/</a><a href="/scweb/modules.php?id=<?=$rank?>">Modules/</a>Attendance &nbsp;</h1> <h4 class="d-inline">for <?=$module?> (<?=$abbr?>) - <?=date("d M Y")?></h4>
+                <h1 class="display-2 d-inline"><a href="/scweb/staff/ranks.php">Ranks/</a><a href="/scweb/staff/modules.php?id=<?=$rank?>">Modules/</a>Attendance &nbsp;</h1> <h4 class="d-inline">for <?=$module?> (<?=$abbr?>) - <?=date("d M Y")?></h4>
             </div>
 
             <div class="col-2">
-                <form action="logout.php">
+                <form action="../logout.php">
                     <button type="submit" class="logout align-bottom" title="Logout">
                         <i class="fa fa-power-off fa-2x" style="color: red;"></i>
                     </button>

@@ -13,9 +13,12 @@ class User
 
     var $isloaded = false;
 
+    var $id = -100;
     var $username = "ERROR";
-    var $email = "ERROR";
-    var $priviledge = "ERROR";
+    var $name = "ERROR";
+    var $surname = "ERROR";
+    var $email = "NULL";
+    var $privilege = "ERROR";
 
 
     function loadbysession($sessionid)
@@ -42,7 +45,7 @@ class User
     {
         global $conn;
 
-        $sql = "SELECT ID, username FROM mydb.users WHERE ID=$userid";
+        $sql = "SELECT ID, username, privilege FROM mydb.users WHERE ID=$userid";
 
         $result = $conn->query($sql);
 
@@ -51,13 +54,50 @@ class User
             while ($row = $result->fetch_assoc())
             {
                 $this->isloaded = true;
+                $this->id = $userid;
                 $this->username = $row["username"];
-                //$this->email = $row["email"];
-                //$this->privilege = $row["privilege"];
+                $this->privilege = $row["privilege"];
             }
         } else
         {
             return;
+        }
+
+        if($this->privilege == 1 || $this->privilege == 2)
+        {
+            $sql = "SELECT name, surname, email FROM mydb.staff WHERE user_id=$userid";
+
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while ($row = $result->fetch_assoc())
+                {
+                    $this->name = $row["name"];
+                    $this->surname = $row["surname"];
+                    $this->email = $row["email"];
+                }
+            } else
+            {
+                return;
+            }
+        } else
+        {
+            $sql = "SELECT name, surname FROM mydb.students WHERE ID=$userid";
+
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while ($row = $result->fetch_assoc())
+                {
+                    $this->name = $row["name"];
+                    $this->surname = $row["surname"];
+                }
+            } else
+            {
+                return;
+            }
         }
     }
 

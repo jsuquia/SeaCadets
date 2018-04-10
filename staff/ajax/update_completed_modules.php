@@ -6,7 +6,7 @@
  * Time: 15:47
  */
 
-require('../php_scripts/db.php');
+require('../../php_scripts/db.php');
 
 $checked = @$_POST['checked'];
 $id = @$_POST['student_id'];

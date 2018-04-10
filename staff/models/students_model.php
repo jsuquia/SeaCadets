@@ -6,7 +6,7 @@
  * Time: 18:31
  */
 
-require('../php_scripts/db.php');
+require('../../php_scripts/db.php');
 
 if(isset($_POST["add"]))
 {
@@ -15,10 +15,11 @@ if(isset($_POST["add"]))
     $surname = $_POST["surname"];
     $rank = $_POST["rank"];
 
-    $stmt = $conn->prepare("INSERT INTO mydb.users (username) VALUES (?)");
-    $stmt->bind_param("s", $username);
+    $stmt = $conn->prepare("INSERT INTO mydb.users (username, privilege) VALUES (?,?)");
+    $stmt->bind_param("si", $username, $privilege);
 
     $username = strtolower($name[0].$surname);
+    $privilege = 3;
 
     $stmt->execute();
 
