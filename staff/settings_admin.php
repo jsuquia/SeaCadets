@@ -194,6 +194,11 @@ require('../php_scripts/check_privilege.php');
                 // output data of each row
                 while($row = $result->fetch_assoc()) {
 
+                    if($row["ID"] == $user->id)
+                    {
+                        continue;
+                    }
+
                     ?>
 
                     <tr>
