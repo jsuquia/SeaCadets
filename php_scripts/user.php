@@ -17,6 +17,7 @@ class User
     var $username = "ERROR";
     var $name = "ERROR";
     var $surname = "ERROR";
+    var $rank = "ERROR";
     var $email = "NULL";
     var $privilege = "ERROR";
 
@@ -83,7 +84,7 @@ class User
             }
         } else
         {
-            $sql = "SELECT name, surname FROM mydb.students WHERE ID=$userid";
+            $sql = "SELECT name, surname, rank FROM mydb.students WHERE user_id=$userid";
 
             $result = $conn->query($sql);
 
@@ -93,6 +94,7 @@ class User
                 {
                     $this->name = $row["name"];
                     $this->surname = $row["surname"];
+                    $this->rank = $row["rank"];
                 }
             } else
             {

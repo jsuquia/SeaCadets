@@ -1,0 +1,87 @@
+
+.row
+{
+    height: calc(100vh/3);
+    padding: 1rem;
+}
+
+#row1, #row2
+{
+    border-bottom: 1px solid lightgray;
+}
+
+.logout, .settings_btn, .bottom_btn
+{
+    background-color: Transparent;
+    border: none;
+    cursor:pointer;
+    outline:none;
+}
+
+.rank_circle
+{
+    border-radius: 50%;
+    height: 4rem;
+    width: 4rem;
+    border: 2px solid lightskyblue;
+}
+
+.settings_btn .fa
+{
+    font-size: 3rem;
+}
+
+.progress, .progress-bar
+{
+    height: 2rem;
+}
+
+.progress-bar
+{
+    padding-top: .5rem;
+}
+
+.next_rank_circle
+{
+    border-radius: 50%;
+    height: 2.5rem;
+    width: 2.5rem;
+    border: 2px solid lightskyblue;
+}
+
+.title, .title_2
+{
+    position: absolute;
+    background-color: lightskyblue;
+    left: 0;
+    top: 4.5rem;
+    width: 6rem;
+    text-wrap: none;
+    border-radius: 5px;
+    padding: 0.1rem .6rem;
+    color: midnightblue;
+    display: none;
+}
+
+.title_2
+{
+    left: -1rem;
+    top: 2.7rem;
+}
+
+div:hover + .title{
+    display: block;
+}
+
+div:hover + .title_2{
+    display: block;
+}
+
+.bottom_btn
+{
+    border-radius: 50%;
+    height: 6rem;
+    width: 6rem;
+    border: 2px solid lightskyblue;
+    margin-bottom: 1rem;
+}

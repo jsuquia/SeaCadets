@@ -88,7 +88,7 @@ require('../php_scripts/check_privilege.php');
                             <input type="hidden" name="choice" id="choice<?=$id?>" value="">
 
                             <button type="submit" id="btn" name="submit" onclick="getChoice(<?=$id?>)">
-                                <img src="img/ranks/circle.jpg" class="rounded" id="img" alt="logo">
+                                <img src="../img/ranks/circle.jpg" class="rounded" id="img" alt="logo">
                             </button>
                         </form>
 
