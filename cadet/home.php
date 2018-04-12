@@ -64,17 +64,9 @@ $percentage = round(($completedmodules/$totalmodules)*100);
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
-
-<form action="../logout.php">
-    <button type="submit" class="logout align-bottom" title="Logout">
-        <i class="fa fa-power-off fa-2x" style="color: red;"></i>
-    </button>
-</form>
-
 
 <div class="container-fluid">
 
@@ -114,9 +106,11 @@ $percentage = round(($completedmodules/$totalmodules)*100);
 
     <div class="row align-items-center" id="row2">
         <div class="col-12">
-            <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style="width: <?=$percentage?>%;" aria-valuenow="<?=$percentage?>" aria-valuemin="0" aria-valuemax="100"><?=$percentage?>%</div>
-            </div>
+            <button class="progress-btn" onClick="document.location.href='/scweb/cadet/modules.php'">
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: <?=$percentage?>%;" aria-valuenow="<?=$percentage?>" aria-valuemin="0" aria-valuemax="100"><?=$percentage?>%</div>
+                </div>
+            </button>
         </div>
 
         <div class="col-6" align="center">

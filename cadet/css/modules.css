@@ -1,0 +1,11 @@
+
+.container-fluid
+{
+    padding: 2rem;
+}
+
+.rank-header
+{
+    border-top: none!important;
+    padding-top: 2rem!important;
+}

@@ -187,7 +187,7 @@ if(isset($_GET["id"]))
             <tbody>
             <?php
 
-            $sql = "SELECT ID FROM mydb.students WHERE rank=$rankID";
+            $sql = "SELECT ID FROM mydb.students WHERE rank=$rankID ORDER BY surname ASC";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0)

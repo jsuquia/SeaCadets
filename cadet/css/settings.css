@@ -1,0 +1,39 @@
+
+.container-fluid
+{
+    padding: 2rem;
+}
+
+.header
+{
+    border-bottom: 1px solid lightgray;
+}
+
+.col-5, .col-7
+{
+    margin-bottom: 1rem;
+}
+
+.password
+{
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid black;
+    height: 2rem;
+}
+
+.update
+{
+    width: 100%;
+}
+
+.logout
+{
+    width: calc(100vw - 4rem);
+    background-color: red;
+    border: 1px solid darkred;
+    color: white;
+    position: fixed;
+    bottom: 2rem;
+
+}

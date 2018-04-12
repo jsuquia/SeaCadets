@@ -31,6 +31,16 @@
     font-size: 3rem;
 }
 
+.progress-btn
+{
+    width: 100%;
+    padding: 0;
+    background-color: Transparent;
+    border: none;
+    cursor:pointer;
+    outline:none;
+}
+
 .progress, .progress-bar
 {
     height: 2rem;
