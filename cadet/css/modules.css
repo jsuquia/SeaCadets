@@ -1,4 +1,9 @@
 
+body
+{
+    background: #ededed;
+}
+
 .container-fluid
 {
     padding: 2rem;

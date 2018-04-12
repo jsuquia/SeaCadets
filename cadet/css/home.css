@@ -1,13 +1,38 @@
 
-.row
+body
+{
+    background: #ededed;
+}
+
+#row1, #row2, #row3
+{
+    border-radius: 5px;
+}
+
+#row1
+{
+    background: rgba(102, 166, 238, 1);
+}
+
+#row2
+{
+    background: rgba(131, 199, 63,1);
+}
+
+#row3
+{
+    background: rgba(206, 49, 49,1);
+}
+
+#top, #middle, #bottom
 {
     height: calc(100vh/3);
     padding: 1rem;
 }
 
-#row1, #row2
+.row
 {
-    border-bottom: 1px solid lightgray;
+    height: 100%;
 }
 
 .logout, .settings_btn, .bottom_btn
@@ -49,6 +74,7 @@
 .progress-bar
 {
     padding-top: .5rem;
+    background-color: darkgreen!important;
 }
 
 .next_rank_circle

@@ -40,67 +40,73 @@ if ($result->num_rows > 0) {
 
 <div class="container-fluid">
 
-    <div class="header">
-        <h1>Profile</h1>
-    </div>
 
-    <br>
-
-    <div class="row">
-
-        <div class="col-5">
-            <h5>Name</h5>
-        </div>
-        <div class="col-7">
-            <?=$user->name?>
+        <div class="header">
+            <h1>Profile</h1>
         </div>
 
-        <div class="col-5">
-            <h5>Surname</h5>
-        </div>
-        <div class="col-7">
-            <?=$user->surname?>
-        </div>
 
-        <div class="col-5">
-            <h5>Username</h5>
-        </div>
-        <div class="col-7">
-            <?=$user->username?>
-        </div>
+    <div class="profile">
 
-        <div class="col-5">
-            <h5>Rank</h5>
-        </div>
-        <div class="col-7">
-            <?=$rank?>
-        </div>
-
-    </div>
-    <br>
-
-    <div class="header">
-        <h2>Update Password</h2>
-    </div>
-    <br>
-
-    <form action="models/settings_model.php" method ="post">
         <div class="row">
 
             <div class="col-5">
-                <h5>Password</h5>
+                <h5>Name</h5>
             </div>
             <div class="col-7">
-                <input type="password" name="password" class="password"/>
+                <?=$user->name?>
             </div>
 
-            <div class="col-12" align="center">
-                <button type="submit" name="update" class="btn btn-primary update">Update</button>
+            <div class="col-5">
+                <h5>Surname</h5>
+            </div>
+            <div class="col-7">
+                <?=$user->surname?>
+            </div>
+
+            <div class="col-5">
+                <h5>Username</h5>
+            </div>
+            <div class="col-7">
+                <?=$user->username?>
+            </div>
+
+            <div class="col-5">
+                <h5>Rank</h5>
+            </div>
+            <div class="col-7">
+                <?=$rank?>
             </div>
 
         </div>
-    </form>
 
+    </div>
+
+        <br>
+
+        <div class="header">
+            <h2>Update Password</h2>
+        </div>
+
+    <div class="password_update">
+        <form action="models/settings_model.php" method ="post">
+            <div class="row">
+
+                <div class="col-5">
+                    <h5>Password</h5>
+                </div>
+                <div class="col-7">
+                    <input type="password" name="password" class="password"/>
+                </div>
+
+                <div class="col-12" align="center">
+                    <button type="submit" name="update" class="btn btn-primary update">Update</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <br>
     <form action="../logout.php">
         <button type="submit" class="btn logout" title="Logout">Logout</button>
     </form>

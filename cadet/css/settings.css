@@ -1,12 +1,33 @@
 
+body
+{
+    background: #ededed;
+}
+
 .container-fluid
 {
-    padding: 2rem;
+    padding: 1rem;
+}
+
+.profile
+{
+    background: rgba(102, 166, 238, 1);
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.password_update
+{
+    background: rgba(131, 199, 63, 1);
+    padding: 1rem;
+    border-radius: 5px;
 }
 
 .header
 {
-    border-bottom: 1px solid lightgray;
+    padding-left: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
 }
 
 .col-5, .col-7
@@ -29,11 +50,8 @@
 
 .logout
 {
-    width: calc(100vw - 4rem);
+    width: calc(100vw - 2rem);
     background-color: red;
     border: 1px solid darkred;
     color: white;
-    position: fixed;
-    bottom: 2rem;
-
 }
