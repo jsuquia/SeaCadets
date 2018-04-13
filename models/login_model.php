@@ -100,12 +100,10 @@ if(isset($_POST["password-recovery"]))
 
             $stmt->execute();
 
-            $recovery_url = "https://zeno.computing.dundee.ac.uk/2017-projects/seacadet/password_recovery.php?email=".$email."&hash=".$hash;
-            $msg = "Please access the following link to recover your password \n" . $recovery_url;
-            $headers = 'From: javisuki96@hotmail.com';
-
-            mail($email,"Password Recovery - Sea Cadet",$msg,$headers);
-
+            //$redirect_uri = 'https://' . $_SERVER['HTTP_HOST'] . '/2017-projects/seacadet/index.php';
+            $redirect_uri = "/scweb/models/mail_model.php?email=".$email."&hash=".$hash;
+            header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
+            exit();
 
         }
     } else
