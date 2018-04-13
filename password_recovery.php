@@ -5,6 +5,7 @@
  * Date: 15/09/2017
  * Time: 11:52
  */
+
 if(isset($_COOKIE["user_session"]))
 {
     //$redirect_uri = 'https://' . $_SERVER['HTTP_HOST'] . '/2017-projects/seacadet/ranks.php';
@@ -26,42 +27,11 @@ if(isset($_COOKIE["user_session"]))
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/password_recovery.css">
 </head>
 <body>
 
 <div class="container-fluid">
-
-    <!-- Modal -->
-    <div class="modal fade" id="recoverPassword" tabindex="-1" role="dialog" aria-labelledby="recoverPasword" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Recover Password</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="models/login_model.php" method ="post">
-                    <div class="modal-body">
-                        <input type="hidden" name="rank" value=""/>
-
-                        <div class="row email">
-                            <h6 class="col-12 text">Enter your email to recover the password</h6>
-                            <br><br>
-                            <input type="email" name="email" class="col-12 form-control" id="email" placeholder="email@example.com" required>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" name="password-recovery" class="btn btn-primary">Send Password</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <div class="row align-items-center">
         <div class="col-6 hidden-sm-down" id="left">
             <img src="img/logo.png" class="img-fluid mx-auto d-block" alt="Responsive image">
@@ -88,7 +58,7 @@ if(isset($_COOKIE["user_session"]))
                         <button type="submit" name="submit" class="btn btn-primary"><b>SIGN IN</b></button>
                     </form>
                     <br>
-                    <button type="button" class="btn btn-primary" id="recover-password" data-toggle="modal" data-target="#recoverPassword">Forgot your password?</button>
+                    <a href="#">Forgot your password?</a>
 
                 </div>
             </div>

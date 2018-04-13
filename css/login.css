@@ -45,7 +45,7 @@ body
     border-bottom: 1px solid #5FCFE3;
 }
 
-input
+#right input
 {
     background-color: transparent!important;
     color: white!important;
@@ -55,10 +55,35 @@ input
     padding-left: 0!important;
 }
 
-.btn
+#right .btn
 {
     background-color: #5FCFE3;
     color: black;
     border: none;
     width: 10rem;
+}
+
+#recover-password
+{
+    color: white!important;
+    background-color: Transparent!important;
+    border: none;
+    cursor:pointer;
+    outline:none;
+    padding: 0;
+}
+
+.modal-content
+{
+    margin-top: 30vh;
+}
+
+.email
+{
+    padding: 1rem;
+}
+
+.text
+{
+    padding: 0;
 }

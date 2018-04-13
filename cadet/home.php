@@ -109,7 +109,7 @@ $percentage = round(($completedmodules/$totalmodules)*100);
     <div id="middle">
         <div class="row align-items-center" id="row2">
             <div class="col-12">
-                <button class="progress-btn" onClick="document.location.href='/scweb/cadet/modules.php'">
+                <button class="progress-btn" onClick="document.location.href='/scweb/cadet/modules.php#current_rank'">
                     <div class="progress">
                         <div class="progress-bar bg-success" role="progressbar" style="width: <?=$percentage?>%;" aria-valuenow="<?=$percentage?>" aria-valuemin="0" aria-valuemax="100"><?=$percentage?>%</div>
                     </div>

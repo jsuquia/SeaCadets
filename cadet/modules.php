@@ -143,8 +143,6 @@ if ($result->num_rows > 0) {
 
 <script>
 
-    $(document).ready(function() { window.location = '#current_rank'; });
-
 </script>
 
 </body>
