@@ -8,6 +8,8 @@
 
 require('../php_scripts/db.php');
 
+session_start();
+
 if(isset($_POST["submit"]))
 {
 
@@ -108,7 +110,14 @@ if(isset($_POST["password-recovery"]))
         }
     } else
     {
-        echo "Email not found";
+        //echo "Email not found";
+
+
+        $_SESSION['msg'] = "Email not found";
+
+        $redirect_uri = "/scweb/login.php";
+        header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
+        exit();
     }
 
 

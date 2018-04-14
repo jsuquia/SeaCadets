@@ -6,11 +6,63 @@
  * Time: 11:52
  */
 
-if(isset($_COOKIE["user_session"]))
+require('php_scripts/db.php');
+
+if(isset($_GET["email"]) && isset($_GET["hash"]))
 {
-    //$redirect_uri = 'https://' . $_SERVER['HTTP_HOST'] . '/2017-projects/seacadet/ranks.php';
-    $redirect_uri = '/scweb/staff/ranks.php';
+    $email = $_GET["email"];
+    $hash = $_GET["hash"];
+} else
+{
+    $_SESSION['msg'] = "The url was invalid";
+
+    $redirect_uri = "/scweb/login.php";
     header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
+    exit();
+}
+
+$sql = "SELECT user_id FROM mydb.password_hash WHERE hash='$hash'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0)
+{
+    while ($row = $result->fetch_assoc())
+    {
+        $user_id = $row['user_id'];
+    }
+} else
+{
+    $_SESSION['msg'] = "Invalid details";
+
+    $redirect_uri = "/scweb/login.php";
+    header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
+    exit();
+}
+
+$sql = "SELECT * FROM mydb.staff WHERE email='$email' AND user_id=$user_id";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0)
+{
+    while ($row = $result->fetch_assoc())
+    {
+        $name = $row['name'];
+        $surname = $row['surname'];
+    }
+} else
+{
+    $_SESSION['msg'] = "Invalid details";
+
+    $redirect_uri = "/scweb/login.php";
+    header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
+    exit();
+}
+
+$sql = "DELETE FROM mydb.password_hash WHERE hash = '$hash'";
+
+if ($conn->query($sql) !== TRUE)
+{
+    echo "Error deleting record: " . $conn->error;
 }
 
 ?>
@@ -31,39 +83,36 @@ if(isset($_COOKIE["user_session"]))
 </head>
 <body>
 
-<div class="container-fluid">
-    <div class="row align-items-center">
-        <div class="col-6 hidden-sm-down" id="left">
-            <img src="img/logo.png" class="img-fluid mx-auto d-block" alt="Responsive image">
-        </div>
+<div class="container">
 
-        <div class="col-12 col-md-6" id="right">
+    <h1 style="color: white; text-align: center; margin-top: -4rem; margin-bottom: 4rem;">Hi <?=$name?> <?=$surname?></h1>
 
-            <div class="row justify-content-center">
-                <div class="col-6 content">
-                    <h1 class="display-5 d-inline bold">SIGN IN</h1>
-                    <br><br><br><br>
-                    <form action="models/login_model.php" method ="post">
-                        <div class="form-group">
-                            <h5>USERNAME</h5>
-                            <input type="text" name="username" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="donald_trump" required>
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <h5>PASSWORD</h5>
-                            <input type="password" name="password" class="form-control" id="password" placeholder="*************" required>
+    <div class="row justify-content-center align-self-center">
+        <div class="col-sm-6">
+
+            <div class="jumbotron vertical-center">
+
+                <h1 style="text-align: center;">Password Recovery</h1>
+                <br><br>
+                <div class="row">
+                    <form action="models/password_recovery_model.php" method ="post">
+                        <input type="hidden" name="user_id" value="<?=$user_id?>"/>
+
+                        <div class="col-12">
+                            <h5>Enter new password</h5>
                         </div>
 
-                        <br>
-                        <button type="submit" name="submit" class="btn btn-primary"><b>SIGN IN</b></button>
+                        <div class="col-12">
+                            <input type="password" name="password" class="password" placeholder="**********"/>
+                        </div>
+
+                        <div class="col-12" align="center">
+                            <button type="submit" name="reset" class="reset-btn">RESET</button>
+                        </div>
                     </form>
-                    <br>
-                    <a href="#">Forgot your password?</a>
-
                 </div>
+
             </div>
-
-
         </div>
     </div>
 

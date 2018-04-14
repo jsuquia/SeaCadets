@@ -11,6 +11,8 @@ use PHPMailer\PHPMailer\Exception;
 
 require '../vendor/autoload.php';
 
+session_start();
+
 if(isset($_GET["email"]) && isset($_GET["hash"]))
 {
     $email = $_GET["email"];
@@ -51,11 +53,25 @@ try {
     //Content
     $mail->isHTML(true);                                  // Set email format to HTML
     $mail->Subject = 'Password Recovery';
-    $mail->Body    = 'Please access the following link to recover your password<br>'. $recovery_url;
+    $mail->Body    = 'Please access the following link to recover your password<br>'. $recovery_url . '<br>';
     //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
-    echo 'Message has been sent';
+
+    $_SESSION['msg'] = "Email successfully sent";
+
+    $redirect_uri = "/scweb/login.php";
+    header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
+    exit();
+
+    //echo 'Message has been sent';
 } catch (Exception $e) {
-    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+    //echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+
+    $_SESSION['msg'] = "ERROR! Email was not sent";
+
+    $redirect_uri = "/scweb/login.php";
+    header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
+    exit();
+
 }
