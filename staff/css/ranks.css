@@ -30,3 +30,24 @@
     margin-top: 3rem;
     float: right;
 }
+
+.modal-content
+{
+    margin-top: 30vh;
+    width: 25rem;
+}
+
+.student, .module
+{
+    width: 10rem;
+    height: 7rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-left: calc((100% - 10rem)/2);
+}
+
+.student
+{
+    margin-bottom: 2rem;
+}

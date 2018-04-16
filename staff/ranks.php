@@ -30,6 +30,37 @@ require('../php_scripts/check_privilege.php');
 
 <div class="container-fluid">
 
+    <!-- Modal -->
+    <div class="modal fade" id="choice" tabindex="-1" role="dialog" aria-labelledby="choice" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Go To</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="models/choice_model.php" method ="post">
+                    <div class="modal-body">
+
+                        <input type="hidden" name="id" id="rank_id" value="">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <button class="btn btn-primary student" name="student">Student</button>
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn btn-primary module" name="modules">Modules</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="main-header">
         <div class="back">
             <a>&nbsp;</a>
@@ -83,14 +114,9 @@ require('../php_scripts/check_privilege.php');
                 <div class="col-4 col-md-3" id="rankdiv">
                     <div class="text-center">
 
-                        <form action="models/choice_model.php" method ="post">
-                            <input type="hidden" name="id" value="<?=$id?>">
-                            <input type="hidden" name="choice" id="choice<?=$id?>" value="">
-
-                            <button type="submit" id="btn" name="submit" onclick="getChoice(<?=$id?>)">
-                                <img src="../img/ranks/circle.jpg" class="rounded" id="img" alt="logo">
-                            </button>
-                        </form>
+                        <button type="button" id="btn" data-toggle="modal" data-target="#choice" onclick="setID(<?=$id?>)">
+                            <img src="../img/ranks/circle.jpg" class="rounded" id="img" alt="logo">
+                        </button>
 
                         <h4 class="d-none d-md-block"><?=$rank?> - <?=$abbr?></h4>
                         <h4 class="d-md-none"><?=$abbr?></h4>
@@ -108,17 +134,6 @@ require('../php_scripts/check_privilege.php');
         ?>
     </div>
 
-<!--    <div class="quarter-circle"></div>-->
-
-    <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-secondary">
-            <input type="radio" name="options" value="students" checked> Students
-        </label>
-        <label class="btn btn-secondary">
-            <input type="radio" name="options" value="modules"> Modules
-        </label>
-    </div>
-
 </div>
 
 
@@ -130,21 +145,9 @@ require('../php_scripts/check_privilege.php');
 
 <script>
 
-    function getChoice(id){
-        var radios = document.getElementsByName('options');
-        var choice = "choice" + id;
-
-        for (var i = 0, length = radios.length; i < length; i++)
-        {
-            if (radios[i].checked)
-            {
-                // do whatever you want with the checked radio
-                document.getElementById(choice).value = radios[i].value;
-
-                // only one radio can be logically checked, don't check the rest
-                break;
-            }
-        }
+    function setID(id)
+    {
+        document.getElementById("rank_id").value = id;
     }
 
 </script>
