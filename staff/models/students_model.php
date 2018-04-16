@@ -11,14 +11,18 @@ require('../../php_scripts/db.php');
 if(isset($_POST["add"]))
 {
 
+    $val = 0;
+
     $name = $_POST["name"];
     $surname = $_POST["surname"];
     $rank = $_POST["rank"];
+    $username = strtolower($name[$val].$surname);
+
+    $username = checkUsername($username, $name, $surname, 2);
 
     $stmt = $conn->prepare("INSERT INTO mydb.users (username, privilege) VALUES (?,?)");
     $stmt->bind_param("si", $username, $privilege);
 
-    $username = strtolower($name[0].$surname);
     $privilege = 3;
 
     $stmt->execute();
@@ -85,5 +89,31 @@ if(isset($_POST["update_rank"]))
     $redirect_uri = $_SERVER['HTTP_REFERER'];
     header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
     exit();
+
+}
+
+function checkUsername($username, $name, $surname, $x) { // Note that $count is passed in as a reference (the & before the $count)
+
+    global $conn;
+
+    $sql="SELECT ID FROM mydb.users WHERE username = '$username'";
+
+    if ($result=mysqli_query($conn,$sql))
+    {
+        // Return the number of rows in result set
+        $count=mysqli_num_rows($result);
+
+        // Free result set
+        mysqli_free_result($result);
+    }
+
+    if($count>0)
+    {
+        $username = strtolower(substr($name, 0, $x).$surname);
+        $x++;
+        checkUsername($username, $name, $surname, $x);
+    }
+
+    return $username;
 
 }
