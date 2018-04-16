@@ -21,6 +21,11 @@
     outline:none;
 }
 
+.progress
+{
+    background-color: rgba(173,216,230,0.4);
+}
+
 .delete
 {
     width: 2rem;
@@ -29,6 +34,11 @@
     cursor: pointer;
     color: red;
     display: none;
+}
+
+.left table
+{
+    width: 23rem;
 }
 
 .left table th
@@ -43,7 +53,7 @@
 
 .right
 {
-    width: calc(100% - 15rem);
+    width: calc(100% - 23rem);
     overflow-x: scroll;
     float: right;
 }
@@ -54,6 +64,7 @@ h6
     width: calc(100% - 3rem);
     margin: 0;
     float: left;
+    white-space: nowrap;
 }
 
 .modal-content

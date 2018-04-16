@@ -30,3 +30,57 @@ if($checked == 1)
 
     $stmt->execute();
 }
+
+$sql = "SELECT name, surname FROM mydb.students WHERE ID=$id";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while ($row = $result->fetch_assoc()) {
+        $name = $row["name"];
+        $surname = $row["surname"];
+    }
+}
+
+$sql = "SELECT rank FROM mydb.ranks WHERE ID=($rank+1)";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while ($row = $result->fetch_assoc()) {
+        $rank_name = $row["rank"];
+    }
+}
+
+
+$sql="SELECT ID FROM mydb.modules WHERE rank = $rank";
+
+if ($result=mysqli_query($conn,$sql))
+{
+    // Return the number of rows in result set
+    $totalmodules=mysqli_num_rows($result);
+
+    // Free result set
+    mysqli_free_result($result);
+}
+
+$sql="SELECT ID FROM mydb.completed_modules WHERE student_ID = $id AND rank = $rank";
+
+if ($result=mysqli_query($conn,$sql))
+{
+    // Return the number of rows in result set
+    $completedmodules=mysqli_num_rows($result);
+
+    // Free result set
+    mysqli_free_result($result);
+}
+
+$percentage = round(($completedmodules/$totalmodules)*100);
+
+$string = $name . " " . $surname . " to " . $rank_name . "?";
+
+echo json_encode((int)$id);
+echo json_encode(',');
+echo json_encode($percentage);
+echo json_encode(',');
+echo json_encode($string);

@@ -164,7 +164,7 @@ if ($result->num_rows > 0) {
                         <h4>Username</h4>
                     </div>
                     <div class="col-12">
-                        <input type="text" class="details" name="username" value="<?=$username?>"/>
+                        <div class="details username"><?=$username?></div>
                     </div>
                 </div>
 

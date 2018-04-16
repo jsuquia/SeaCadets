@@ -20,6 +20,8 @@ if ($result->num_rows > 0) {
 
 $ranks_obj = (object)[];
 
+
+
 $sql = "SELECT * FROM mydb.ranks";
 $result = $conn->query($sql);
 

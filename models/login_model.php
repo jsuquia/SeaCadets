@@ -25,9 +25,6 @@ if(isset($_POST["submit"]))
         // output data of each row
         while($row = $result->fetch_assoc()) {
 
-            echo $row["password"];
-            echo $password;
-
             if (password_verify($password, $row["password"]))
             {
                 if($row["username"] == $username)
@@ -61,10 +58,15 @@ if(isset($_POST["submit"]))
                 }
                 else
                 {
+                    $_SESSION['msg'] = "Username not found!";
+
                     $redirect_uri = $_SERVER['HTTP_REFERER'];
                     header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
                     exit();
                 }
+            } else
+            {
+                $_SESSION['msg'] = "Incorrect Password!";
             }
 
         }

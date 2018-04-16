@@ -71,3 +71,19 @@ if(isset($_POST["delete"]))
     }
 
 }
+
+if(isset($_POST["update_rank"]))
+{
+    $id = $_POST["student_id"];
+    $rank = $_POST["rank"];
+
+    $stmt = $conn->prepare("UPDATE mydb.students SET rank=? WHERE ID=$id");
+
+    $stmt->bind_param("s", $rank);
+    $stmt->execute();
+
+    $redirect_uri = $_SERVER['HTTP_REFERER'];
+    header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
+    exit();
+
+}

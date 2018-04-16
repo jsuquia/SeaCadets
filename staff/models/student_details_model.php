@@ -15,8 +15,6 @@ if(isset($_POST["update"]))
     $surname = $_POST["surname"]; //HASH THIS HERE PLEASE
     $rank = $_POST["rank"];
 
-    echo $name . $surname . $rank;
-
     $stmt = $conn->prepare("UPDATE mydb.students SET name=?, surname=?, rank=? WHERE ID=$id");
 
     $stmt->bind_param("sss", $name, $surname, $rank);
