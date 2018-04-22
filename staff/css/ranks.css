@@ -1,3 +1,13 @@
+
+.main-header-2
+{
+    border-bottom: 1px solid #5FCFE3;
+    padding-top: 1rem;
+    width: calc(100vw - 8rem);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
 #rankdiv
 {
     padding-bottom: 2rem;
@@ -33,11 +43,11 @@
 
 .modal-content
 {
-    margin-top: 30vh;
+    margin-top: 20vh;
     width: 25rem;
 }
 
-.student, .module
+.onshore, .offshore, .boating
 {
     width: 10rem;
     height: 7rem;
@@ -47,7 +57,7 @@
     margin-left: calc((100% - 10rem)/2);
 }
 
-.student
+.onshore, .offshore
 {
     margin-bottom: 2rem;
 }

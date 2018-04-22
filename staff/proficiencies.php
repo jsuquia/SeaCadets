@@ -9,6 +9,16 @@
 require('../php_scripts/check_cookie.php');
 require('../php_scripts/check_privilege.php');
 
+if(isset($_GET["reward"]))
+{
+    $reward_id = $_GET["reward"];
+} else
+{
+    $redirect_uri = '/scweb/staff/ranks.php';
+    header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
+    exit();
+}
+
 if(isset($_GET["id"]))
 {
     $rank_id = $_GET["id"];
@@ -45,7 +55,7 @@ if(isset($_GET["id"]))
 
         <div class="row">
             <div class="col-10">
-                <h1 class="display-2 d-inline buttons"><a href="/scweb/staff/ranks.php">Ranks/</a>Specialisations
+                <h1 class="display-2 d-inline buttons"><a href="/scweb/staff/ranks.php">Ranks/</a>Proficiencies
                     <button type="button" class="btn btn-primary" id="enabling_btn" onclick="activateBtn()">Update Progress</button>
                     <button type="button" class="btn btn-primary" id="adding_student" data-toggle="modal" data-target="#addStudent">Add Student</button>
                 </h1>
@@ -61,45 +71,10 @@ if(isset($_GET["id"]))
             </div>
         </div>
     </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="addStudent" tabindex="-1" role="dialog" aria-labelledby="addStudent" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add Student</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="models/students_model.php" method ="post">
-                    <div class="modal-body">
-                        <input type="hidden" name="rank" value="<?=$rankID?>"/>
-
-                        <div class="row name">
-                            <h6 class="col-12 col-md-3 text">Name</h6>
-                            <input type="text" name="name" class="col-12 col-md-9 form-control" id="name" placeholder="Gordon" required>
-                        </div>
-                        <br>
-                        <div class="row surname">
-                            <h6 class="col-12 col-md-3 text">Surname</h6>
-                            <input type="text" name="surname" class="col-12 col-md-9 form-control d-inline" id="surname" placeholder="Ramsay" required>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" name="add" class="btn btn-primary">Add</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <br>
 
     <h4>Select Rank to view &nbsp;
-        <select class="dropdown" name="rank" onchange="location = '/scweb/staff/specialisations.php?id=' + this.options[this.selectedIndex].value;">
+        <select class="dropdown" name="rank" onchange="location = '/scweb/staff/proficiencies.php?reward=' + <?=$reward_id?> + '&id=' + this.options[this.selectedIndex].value;">
             <?php
 
             $sql = "SELECT ID, rank FROM mydb.ranks";
@@ -196,7 +171,7 @@ if(isset($_GET["id"]))
 
         <?php
 
-        $sql = "SELECT ID, name FROM mydb.categories WHERE rewards_id=1 ORDER BY ID ASC";
+        $sql = "SELECT ID, name FROM mydb.categories WHERE rewards_id=$reward_id ORDER BY ID ASC";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0)
@@ -221,51 +196,51 @@ if(isset($_GET["id"]))
                 ?>
                 <table class="table table-striped" id="categoryid<?=$category_id?>">
                     <thead>
-                        <tr>
-                            <th scope="col" colspan="<?=$totalsubcategories?>">
-                                <div align="center"><h4><?=$name?></h4></div>
-                            </th>
-                        </tr>
+                    <tr>
+                        <th scope="col" colspan="<?=$totalsubcategories?>">
+                            <div align="center"><h4><?=$name?></h4></div>
+                        </th>
+                    </tr>
 
-                        <tr>
-                            <?php
+                    <tr>
+                        <?php
 
-                            $count = 0;
-                            $subcategories_arr = array();
+                        $count = 0;
+                        $subcategories_arr = array();
 
-                            $sql1 = "SELECT ID, name FROM mydb.subcategories WHERE category_id=$category_id ORDER BY ID ASC";
-                            $result1 = $conn->query($sql1);
+                        $sql1 = "SELECT ID, name FROM mydb.subcategories WHERE category_id=$category_id ORDER BY ID ASC";
+                        $result1 = $conn->query($sql1);
 
-                            if ($result1->num_rows > 0)
+                        if ($result1->num_rows > 0)
+                        {
+                            // output data of each row
+                            while($row1 = $result1->fetch_assoc())
                             {
-                                // output data of each row
-                                while($row1 = $result1->fetch_assoc())
-                                {
-                                    $name = $row1["name"];
-                                    $subcategories_arr[] = $row1["ID"];
-                                    $count++;
-                                    ?>
+                                $name = $row1["name"];
+                                $subcategories_arr[] = $row1["ID"];
+                                $count++;
+                                ?>
 
-                                    <th scope="col">
-                                        <div align="center"><?=$name?></div>
-                                        <div class="caption"><?=$name?></div>
-                                    </th>
+                                <th scope="col">
+                                    <div align="center"><?=$name?></div>
+                                    <div class="caption"><?=$name?></div>
+                                </th>
 
 
-                                    <?php
-                                }
+                                <?php
                             }
+                        }
 
-                            ?>
+                        ?>
 
-                            <style>
-                                #categoryid<?=$category_id?>
-                                {
-                                    width: calc(5rem*<?=$count?>);
-                                }
-                            </style>
+                        <style>
+                            #categoryid<?=$category_id?>
+                            {
+                                width: calc(5rem*<?=$count?>);
+                            }
+                        </style>
 
-                        </tr>
+                    </tr>
                     </thead>
 
                     <tbody>
@@ -284,33 +259,33 @@ if(isset($_GET["id"]))
                             ?>
 
                             <tr>
-                            <?php
+                                <?php
 
-                            foreach ($subcategories_arr as $subcategories_id)
-                            {
-                                $sql2 = "SELECT * FROM mydb.completed_rewards WHERE student_ID = $student_ID AND subcategory = $subcategories_id AND category = $category_id AND reward = 1";
-                                $result2 = $conn->query($sql2);
+                                foreach ($subcategories_arr as $subcategories_id)
+                                {
+                                    $sql2 = "SELECT * FROM mydb.completed_rewards WHERE student_ID = $student_ID AND subcategory = $subcategories_id AND category = $category_id AND reward = $reward_id";
+                                    $result2 = $conn->query($sql2);
 
-                                if ($result2->num_rows > 0) {
-                                    ?>
+                                    if ($result2->num_rows > 0) {
+                                        ?>
 
-                                    <td style="background-color: limegreen">
-                                        <button class="update_btn" id="btn" data-checked="1" disabled onclick="update(this, <?= $student_ID ?>, <?= $subcategories_id ?>, <?= $category_id ?>, 1)"></button>
-                                    </td>
+                                        <td style="background-color: limegreen">
+                                            <button class="update_btn" id="btn" data-checked="1" disabled onclick="update(this, <?= $student_ID ?>, <?= $subcategories_id ?>, <?= $category_id ?>, <?=$reward_id?>)"></button>
+                                        </td>
 
-                                    <?php
+                                        <?php
 
-                                } else {
-                                    ?>
+                                    } else {
+                                        ?>
 
-                                    <td style="background-color: white;">
-                                        <button class="update_btn fa fa-times" id="btn" data-checked="0" disabled onclick="update(this, <?= $student_ID ?>, <?= $subcategories_id ?>, <?= $category_id ?>, 1)"></button>
-                                    </td>
+                                        <td style="background-color: white;">
+                                            <button class="update_btn fa fa-times" id="btn" data-checked="0" disabled onclick="update(this, <?= $student_ID ?>, <?= $subcategories_id ?>, <?= $category_id ?>, <?=$reward_id?>)"></button>
+                                        </td>
 
-                                    <?php
+                                        <?php
+                                    }
                                 }
-                            }
-                            ?>
+                                ?>
                             </tr>
 
                             <?php
