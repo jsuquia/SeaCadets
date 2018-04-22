@@ -55,7 +55,7 @@ if(isset($_GET["id"]))
 
         <div class="row">
             <div class="col-10">
-                <h1 class="display-2 d-inline buttons"><a href="/scweb/staff/ranks.php">Ranks/</a>Proficiencies
+                <h1 class="display-2 d-inline buttons"><a href="/scweb/staff/ranks.php">Ranks/</a><?php if($reward_id == 2) echo "Onshore "; else if($reward_id == 3) echo "Offshore "; else if($reward_id == 4) echo "Boating ";?>Proficiencies
                     <button type="button" class="btn btn-primary" id="enabling_btn" onclick="activateBtn()">Update Progress</button>
                     <button type="button" class="btn btn-primary" id="adding_student" data-toggle="modal" data-target="#addStudent">Add Student</button>
                 </h1>
