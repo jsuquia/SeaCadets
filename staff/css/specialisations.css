@@ -1,0 +1,141 @@
+
+.buttons button
+{
+    cursor: pointer;
+}
+
+.right
+{
+    width: calc(100% - 15rem);
+    overflow-x: scroll;
+    float: right;
+    display: -webkit-box;
+}
+
+.right table
+{
+    display: table;
+    table-layout: fixed;
+    margin-right: 2rem;
+    margin-left: 2rem;
+}
+
+.right tbody
+{
+    border-right: 2px solid grey;
+    border-left: 2px solid grey;
+}
+
+.table thead th
+{
+    border-top: none;
+}
+
+.right table th
+{
+    width: 5rem!important;
+    text-overflow: ellipsis;
+
+    /* Required for text-overflow to do anything */
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.right table td
+{
+    border-right: 1px solid lightgray;
+    padding: 0;
+    height: 3rem;
+}
+
+.right table tbody button, .delete
+{
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: Transparent;
+    border: none;
+    outline:none;
+}
+
+.delete
+{
+    width: 2rem;
+    float: right;
+    height: 1.4rem;
+    cursor: pointer;
+    color: red;
+    display: none;
+}
+
+.left table
+{
+    width: 15rem;
+}
+
+.left table th
+{
+    height: 3rem;
+}
+
+.left
+{
+    float: left;
+}
+
+h6
+{
+    font-size: 1rem;
+    width: calc(100% - 3rem);
+    margin: 0;
+    float: left;
+    white-space: nowrap;
+}
+
+.modal-content
+{
+    margin-top: 30vh;
+}
+
+.modal .row
+{
+    margin-right: 1rem;
+}
+
+.text
+{
+    text-align: left;
+    padding-left: 2rem;
+    padding-top: 0.7rem;
+}
+
+.caption
+{
+    position: absolute;
+    z-index: 1000;
+    background-color: #52657A;
+    text-wrap: none;
+    height: 2.5rem;
+    left: 60%;
+    top: 5.3rem;
+    border-radius: 5px;
+    padding: 0.1rem .6rem;
+    color: #EAF2FA;
+    text-align: center;
+    display: none;
+}
+
+div:hover + .caption {
+    display: block;
+}
+
+.student_name a
+{
+    color: black;
+}
+
+.student_name a:hover
+{
+    text-decoration: none;
+    color: grey;
+}
