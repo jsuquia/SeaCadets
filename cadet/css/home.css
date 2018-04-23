@@ -121,3 +121,23 @@ div:hover + .title_2{
     border: 2px solid lightskyblue;
     margin-bottom: 1rem;
 }
+
+.modal-content
+{
+    margin-top: 10vh;
+}
+
+.onshore, .offshore, .boating
+{
+    width: 70%;
+    height: 7rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-left: 15%;
+}
+
+.onshore, .offshore
+{
+    margin-bottom: 2rem;
+}

@@ -146,15 +146,48 @@ $percentage = round(($completedmodules/$totalmodules)*100);
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="proficiencies" tabindex="-1" role="dialog" aria-labelledby="proficiencies" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Go To</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="models/proficiencies_model.php" method ="post">
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <button class="btn btn-primary onshore" name="onshore">ONSHORE</button>
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn btn-primary offshore" name="offshore">OFFSHORE</button>
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn btn-primary boating" name="boating">BOATING</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div id="bottom">
         <div class="row align-items-center" id="row3">
             <div class="col-6" align="center">
-                <button class="bottom_btn"></button>
+                <button class="bottom_btn" onClick="document.location.href='/scweb/cadet/specialisations.php'"></button>
                 <h5>Specialisation</h5>
             </div>
 
             <div class="col-6" align="center">
-                <button class="bottom_btn"></button>
+                <button class="bottom_btn" data-toggle="modal" data-target="#proficiencies"></button>
                 <h5>Proficiencies</h5>
             </div>
         </div>

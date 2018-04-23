@@ -1,0 +1,44 @@
+
+body
+{
+    background: #ededed;
+}
+
+.row
+{
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.container-fluid
+{
+    padding: 2rem;
+}
+
+.rank-header
+{
+    border-top: none!important;
+    padding-top: 2rem!important;
+}
+
+.categories
+{
+    border-radius: 5px;
+    border: 1px solid grey;
+    margin-bottom: 1rem;
+}
+
+.categories h4
+{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.subcategories
+{
+    text-align: center;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50px;
+    margin-bottom: 0.5rem;
+}

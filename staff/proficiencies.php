@@ -14,7 +14,7 @@ if(isset($_GET["reward"]))
     $reward_id = $_GET["reward"];
 } else
 {
-    $redirect_uri = '/scweb/staff/ranks.php';
+    $redirect_uri = '/scweb/cadet/home.php';
     header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
     exit();
 }
